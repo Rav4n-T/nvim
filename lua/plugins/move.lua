@@ -1,14 +1,6 @@
 local M = {
-  "folke/flash.nvim",
-  keys = {
-    {
-      "/",
-      function()
-        require("flash").jump()
-      end,
-      desc = "Flash",
-    },
-  },
-  opts = {},
+	"folke/flash.nvim",
+	event = { "BufEnter" },
+	opts = {},
 }
 return M

@@ -13,7 +13,6 @@ wk.register({
 	["<Tab>"] = { ":bnext<cr>", "go to next buffer" },
 	["<S-Tab>"] = { ":bprevious<cr>", "go to previous buffer" },
 	["K"] = { vim.lsp.buf.hover, "show info" },
-	["<C-K>"] = { vim.lsp.buf.signature_help, "show signature help" },
 	-- ["<F6>"] = { "<cmd>DapContinue<cr>", "Start debug or step run" },
 	-- ["<F7>"] = { "<cmd>DapStepInto<cr>", "Step into a func or method" },
 	-- ["<F8>"] = { "<cmd>DapStepOut<cr>", "Step out of a func or method" },
@@ -46,6 +45,7 @@ wk.register({
 		name = "actions",
 		c = { vim.lsp.buf.code_action, "code actions" },
 		r = { vim.lsp.buf.rename, "rename current cursor variable" },
+		k = { vim.lsp.buf.signature_help, "show signature help" },
 	},
 	d = {
 		name = "delete/diagnostics/debug",

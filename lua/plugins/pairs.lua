@@ -5,7 +5,7 @@ local M = {
 	config = function()
 		require("autoclose").setup({
 			keys = {
-				["<"] = { escape = true, close = true, pair = "<>", disabled_filetypes = { "cpp" } },
+				-- ["<"] = { escape = true, close = true, pair = "<>", disabled_filetypes = { "cpp" } },
 			},
 			options = {
 				disable_when_touch = true,

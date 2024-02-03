@@ -26,7 +26,7 @@ M.options = {
 		fileencodings = "ucs-bom,utf-8,gbk,cp936,gb18030,gb2312",
 		-- set fold
 		foldmethod = "expr",
-		nofoldenable = true,
+		foldenable = false,
 		foldexpr = "nvim_treesitter#foldexpr()",
 		foldlevel = 8,
 		-- set cancel highlight, ignore case
@@ -38,7 +38,7 @@ M.options = {
 		autoread = true,
 		autowrite = true,
 		-- hide * markup for bold and italic
-		conceallevel = 3,
+		conceallevel = 0,
 		-- disable line wrap
 		wrap = false,
 		-- set file cache

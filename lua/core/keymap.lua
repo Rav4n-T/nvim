@@ -1,5 +1,6 @@
 local wk = require("which-key")
 local Util = require("utils")
+local fn = require("core.fn")
 
 wk.register({
 	["<C-h>"] = { "<C-w>h", "go to the left window" },
@@ -44,6 +45,7 @@ wk.register({
 	a = {
 		name = "actions",
 		c = { vim.lsp.buf.code_action, "code actions" },
+		f = { "<cmd>Format<cr>", "sync format current file" },
 		r = { vim.lsp.buf.rename, "rename current cursor variable" },
 		k = { vim.lsp.buf.signature_help, "show signature help" },
 	},

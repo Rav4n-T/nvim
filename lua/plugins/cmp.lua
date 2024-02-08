@@ -59,7 +59,7 @@ local M = {
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp", trigger_characters = { "-" } },
-				-- { name = "codeium" },
+				{ name = "codeium" },
 				{ name = "luasnip" },
 				{ name = "nvim_lua" },
 			}, {

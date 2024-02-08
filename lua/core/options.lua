@@ -55,6 +55,8 @@ M.options = {
 		-- nvim 0.9 new options
 		splitkeep = "screen",
 		-- shortmess
+		-- windows shell
+		shell = "powershell",
 	},
 	g = {
 		-- set leaderkey

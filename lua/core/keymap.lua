@@ -24,6 +24,11 @@ wk.register({
 		H = { "d0", "delete to line head" },
 		L = { "d$", "delete to line end" },
 	},
+	v = {
+		name = "select",
+		H = { "v0", "select to line head" },
+		L = { "v$", "select to line end" },
+	},
 	g = {
 		name = "goto",
 		d = { "<cmd>Telescope lsp_definitions<cr>", "Jump to function definition" },
@@ -34,6 +39,8 @@ wk.register({
 			"Goto the definition of the type of the word under the cursor",
 		},
 	},
+	H = { "0", "go line start" },
+	L = { "$", "go line end" },
 })
 
 wk.register({
@@ -136,6 +143,7 @@ wk.register({
 		name = "Other Utils",
 		c = { Util.telescope("colorscheme", { enable_preview = true }), "Colorscheme with preview" },
 		n = { "<cmd>Telescope notify<cr>", "notify list" },
+		p = { "<cmd>CccPick<cr>", "Color picker" },
 		t = { "<cmd>Telescop<cr>", "Open Telescop" },
 		-- w = { require("nvim-toggler").toggle, "Toggle current words" },
 	},

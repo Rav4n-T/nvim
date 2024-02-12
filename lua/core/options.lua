@@ -56,7 +56,7 @@ M.options = {
 		splitkeep = "screen",
 		-- shortmess
 		-- windows shell
-		shell = "powershell",
+		-- shell = "powershell",
 	},
 	g = {
 		-- set leaderkey

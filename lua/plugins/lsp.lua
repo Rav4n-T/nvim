@@ -19,6 +19,28 @@ local M = {
 		},
 		-- LSP Server Settings
 		servers = {
+			lua_ls = {
+				settings = {
+					Lua = {
+						runtime = {
+							version = "LuaJIT",
+						},
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+						telemetry = {
+							enable = false,
+						},
+					},
+				},
+			},
 			clangd = {
 				cmd = { "clangd", "--header-insertion=iwyu", "--clang-tidy" },
 				root_dir = function(fname)
@@ -55,14 +77,9 @@ local M = {
 					},
 				},
 			},
-			jsonls = {},
 			gopls = {},
+      emmet_ls = {},
 			tsserver = {},
-			-- unocss = {
-			--   root_dir = function(fname)
-			--     return require 'lspconfig.util'.root_pattern("package.json", ".git")(fname)
-			--   end
-			-- },
 			volar = {
 				filetypes = { "vue" },
 				init_options = {
@@ -74,6 +91,8 @@ local M = {
 					},
 				},
 			},
+			tailwindcss = {},
+			jsonls = {},
 			pyright = {},
 			cssls = {
 				filetypes = {
@@ -87,51 +106,6 @@ local M = {
 					scss = { validate = true },
 				},
 				single_file_support = true,
-			},
-			lua_ls = {
-				settings = {
-					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						telemetry = {
-							enable = false,
-						},
-					},
-				},
-			},
-			jdtls = {
-				cmd = {
-					"java", -- or '/path/to/java17_or_newer/bin/java'
-					"-Declipse.application=org.eclipse.jdt.ls.core.id1",
-					"-Dosgi.bundles.defaultStartLevel=4",
-					"-Declipse.product=org.eclipse.jdt.ls.core.product",
-					"-Dlog.protocol=true",
-					"-Dlog.level=ALL",
-					"-Xmx1g",
-					"--add-modules=ALL-SYSTEM",
-					"--add-opens",
-					"java.base/java.util=ALL-UNNAMED",
-					"--add-opens",
-					"java.base/java.lang=ALL-UNNAMED",
-					"-jar",
-					vim.fn.stdpath("data")
-						.. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar",
-					"-configuration",
-					vim.fn.stdpath("data") .. "/mason/packages/jdtls/config_win",
-					"-data",
-					vim.fn.stdpath("data") .. "jdtls/workspace",
-				},
 			},
 		},
 		setup = {},

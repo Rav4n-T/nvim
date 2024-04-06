@@ -47,6 +47,24 @@
       },
       {
         "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript/solidjs.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript/react.json"
+      },
+      {
+        "language": [
           "typescript",
           "typescriptreact"
         ],

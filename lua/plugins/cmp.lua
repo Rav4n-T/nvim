@@ -44,7 +44,7 @@ local M = {
 				return true
 			end,
 			completion = {
-				keyword_length = 2,
+				keyword_length = 1,
 			},
 			performance = {
 				max_view_entries = 10,
@@ -58,12 +58,12 @@ local M = {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp", trigger_characters = { "-" } },
-				{ name = "codeium" },
-				{ name = "luasnip" },
-				{ name = "nvim_lua" },
+				{ name = "nvim_lua", priority = 8 },
+				{ name = "nvim_lsp", trigger_characters = { "-" }, priority = 8 },
+				{ name = "luasnip", priority = 7 },
+				{ name = "codeium", priority = 6 },
 			}, {
-				{ name = "buffer" },
+				{ name = "buffer", priority = 7 },
 				{ name = "async_path" },
 			}),
 			mapping = cmp.mapping.preset.insert({
@@ -96,19 +96,19 @@ local M = {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
 			sorting = {
-				priority_weight = 2,
-				-- comparators = {
-				-- 	cmp.config.compare.offset,
-				-- 	cmp.config.compare.exact,
-				-- 	cmp.config.compare.scopes,
-				-- 	cmp.config.compare.score,
-				-- 	cmp.config.compare.recently_used,
-				-- 	cmp.config.compare.locality,
-				-- 	cmp.config.compare.kind,
-				-- 	cmp.config.compare.sort_text,
-				-- 	cmp.config.compare.length,
-				-- 	cmp.config.compare.order,
-				-- },
+				-- priority_weight = 2,
+				comparators = {
+					cmp.config.compare.offset,
+					cmp.config.compare.exact,
+					cmp.config.compare.scopes,
+					cmp.config.compare.score,
+					cmp.config.compare.recently_used,
+					cmp.config.compare.locality,
+					cmp.config.compare.kind,
+					cmp.config.compare.sort_text,
+					cmp.config.compare.length,
+					cmp.config.compare.order,
+				},
 			},
 		})
 		cmp.setup.cmdline({ "/", "?" }, {

@@ -78,7 +78,11 @@ local M = {
 				},
 			},
 			gopls = {},
-      emmet_ls = {},
+			emmet_language_server = {
+				init_options = {
+					includeLanguages = { typescriptreact = "html" },
+				},
+			},
 			tsserver = {},
 			volar = {
 				filetypes = { "vue" },
@@ -101,9 +105,9 @@ local M = {
 					"less",
 				},
 				settings = {
-					css = { validate = true },
-					less = { validate = true },
-					scss = { validate = true },
+					css = { validate = true, lint = { unknownAtRules = "ignore" } },
+					less = { validate = true, lint = { unknownAtRules = "ignore" } },
+					scss = { validate = true, lint = { unknownAtRules = "ignore" } },
 				},
 				single_file_support = true,
 			},

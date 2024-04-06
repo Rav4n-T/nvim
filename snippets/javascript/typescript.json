@@ -1,19 +1,14 @@
 {
-	"importModule":{
-		"prefix":"im",
-		"body":[
-			"import ${0:*} from '${1:ModuleName}'"
-		],
+  "importModule": {
+    "prefix": "im",
+    "body": ["import ${0:*} from '${1:ModuleName}'"],
     "description": "import some module"
-	},
-	"consoleLog":{
-		"prefix":"cl",
-		"body":[
-			"console.log(${1:string})",
-			"$0"
-		],
+  },
+  "consoleLog": {
+    "prefix": "cl",
+    "body": ["console.log(${1:string})", "$0"],
     "description": "console log some thing"
-	},
+  },
   "Switch Statement": {
     "prefix": "switch",
     "body": [

@@ -45,11 +45,6 @@ vim.api.nvim_create_autocmd("FileType", {
 		})
 	end,
 })
--- vim.api.nvim_create_autocmd("InsertLeave", {
---   callback = function()
---     Format
---   end,
--- })
 
 vim.api.nvim_create_user_command("Format", function(args)
 	local range = nil
@@ -62,3 +57,14 @@ vim.api.nvim_create_user_command("Format", function(args)
 	end
 	require("conform").format({ async = true, lsp_fallback = true, range = range })
 end, { range = true })
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+	callback = function()
+		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
+		if input_status == 2 then
+			vim.fn.system("fcitx5-remote -c")
+		end
+		-- auto format in InsertLeave
+		-- vim.cmd("Format")
+	end,
+})

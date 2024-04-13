@@ -4,7 +4,7 @@ local M = {
 		{ "L3MON4D3/LuaSnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "FelipeLema/cmp-async-path" },
+		{ "kola-web/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
@@ -64,7 +64,15 @@ local M = {
 				{ name = "codeium", priority = 6 },
 			}, {
 				{ name = "buffer", priority = 7 },
-				{ name = "async_path" },
+				{
+					name = "path",
+					option = {
+						pathMappings = {
+							["@"] = "${folder}/src",
+							["/"] = "${folder}/public/",
+						},
+					},
+				},
 			}),
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp.mapping(function(fallback)

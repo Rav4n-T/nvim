@@ -44,8 +44,8 @@ local M = {
 				project = {
 					theme = "dropdown",
 					base_dirs = {
-						{ "~/Desktop/Workspaces" },
-						{ "~/Desktop/Projectes" },
+						{ "~/Workspaces" },
+						{ "~/Projectes" },
 					},
 					hidden_files = true,
 					sync_with_nvim_tree = true,

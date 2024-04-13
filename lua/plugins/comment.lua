@@ -2,7 +2,7 @@ local M = {
 	-- "numToStr/Comment.nvim",
 	"echasnovski/mini.comment",
 	version = "*",
-	event = "InsertEnter",
+	event = "BufEnter",
 	config = function()
 		-- require("Comment").setup()
 		require("mini.comment").setup({

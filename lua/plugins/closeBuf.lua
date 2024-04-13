@@ -1,6 +1,6 @@
 local M = {
 	"kazhala/close-buffers.nvim",
-	event = "BufLeave",
+	event = "BufEnter",
 	opts = {
 		filetype_ignore = {}, -- Filetype to ignore when running deletions
 		file_glob_ignore = {}, -- File name glob pattern to ignore when running deletions (e.g. '*.md')

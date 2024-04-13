@@ -1,0 +1,44 @@
+{
+  "tsconfig base url": {
+    "prefix": "baseUrl",
+    "body": "\"baseUrl\": \".\",${0}"
+  },
+  "tsconfig paths": {
+    "prefix": "paths",
+    "body": [
+      "\"paths\": {",
+      "\t\"@/*\": [\"./src/*\"],",
+      "\t\"/*\": [\"./public/*\"],${1}",
+      "}${0}"
+    ]
+  },
+  "new solid project jsconfig": {
+    "prefix": "nsjc",
+    "body": [
+      "{",
+      "\t\"compilerOptions\": {",
+      "\t\t\"target\": \"ESNext\",",
+      "\t\t\"module\": \"ESNext\",",
+      "\t\t\"moduleResolution\": \"bundler\",",
+      "\t\t\"composite\": true,",
+      "\t\t\"allowSyntheticDefaultImports\": true,",
+      "\t\t\"esModuleInterop\": true,",
+      "\t\t\"jsx\": \"preserve\",",
+      "\t\t\"jsxImportSource\": \"solid-js\",",
+      "\t\t\"allowJs\": true,",
+      "\t\t\"noEmit\": true,",
+      "\t\t\"strict\": true,",
+      "\t\t\"skipLibCheck\": true,",
+      "\t\t\"baseUrl\": \".\",",
+      "\t\t\"paths\": {",
+      "\t\t\t\"@/*\": [\"./src/*\"],",
+      "\t\t\t\"/*\": [\"./public/*\"],",
+      "\t\t},",
+      "\t\t\"resolveJsonModule\": true,",
+      "\t\t\"isolatedModules\": true,",
+      "\t},",
+      "\t\"include\": [\"src\"]",
+      "}"
+    ]
+  }
+}

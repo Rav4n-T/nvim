@@ -2,7 +2,9 @@
   "New Solidjs Function": {
     "prefix": "nsf",
     "body": [
-      "const ${TM_FILENAME_BASE} = () => {",
+      "import type { Component } from 'solid-js';",
+      "",
+      "const ${TM_FILENAME_BASE}: Component = () => {",
       "\treturn (",
       "\t\t<>",
       "\t\t\t$1",

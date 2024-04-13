@@ -47,19 +47,20 @@
       },
       {
         "language": [
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact"
+          "javascriptreact"
         ],
         "path": "./javascript/solidjs.json"
       },
       {
         "language": [
-          "javascript",
-          "javascriptreact",
-          "typescript",
           "typescriptreact"
+        ],
+        "path": "./javascript/solidjs-ts.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact"
         ],
         "path": "./javascript/react.json"
       },
@@ -73,6 +74,13 @@
       {
         "language": "vue",
         "path": "./vue/vue.json"
+      },
+      {
+        "language": [
+          "json",
+          "jsonc"
+        ],
+        "path": "./json.json"
       },
       {
         "language": "jekyll",

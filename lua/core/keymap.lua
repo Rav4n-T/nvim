@@ -54,6 +54,7 @@ wk.register({
 		c = { vim.lsp.buf.code_action, "code actions" },
 		f = { "<cmd>Format<cr>", "sync format current file" },
 		r = { vim.lsp.buf.rename, "rename current cursor variable" },
+		t = { require("nvim-toggler").toggle, "Invert current word" },
 		k = { vim.lsp.buf.signature_help, "show signature help" },
 	},
 	d = {
@@ -145,6 +146,5 @@ wk.register({
 		n = { "<cmd>Telescope notify<cr>", "notify list" },
 		p = { "<cmd>CccPick<cr>", "Color picker" },
 		t = { "<cmd>Telescop<cr>", "Open Telescop" },
-		-- w = { require("nvim-toggler").toggle, "Toggle current words" },
 	},
 }, { prefix = "<leader>" })

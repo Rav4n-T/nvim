@@ -14,7 +14,7 @@ local M = {
 		diagnostics = {
 			underline = true,
 			update_in_insert = false,
-			virtual_text = { spacing = 4, prefix = "●" },
+			virtual_text = { spacing = 2, prefix = ">" },
 			severity_sort = true,
 		},
 		-- LSP Server Settings
@@ -77,7 +77,6 @@ local M = {
 					},
 				},
 			},
-			gopls = {},
 			emmet_language_server = {
 				init_options = {
 					includeLanguages = { typescriptreact = "html" },

@@ -13,12 +13,13 @@ local M = {
 			-- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
 			-- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
 			local cwd = vim.fn.getcwd()
-			if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-				return cwd .. "/venv/bin/python"
+			if vim.fn.executable(cwd .. "/.env/bin/python") == 1 then
+				return cwd .. "/.env/bin/python"
 			elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
 				return cwd .. "/.venv/bin/python"
 			else
-				return cwd .. "/.env/Scripts/python.exe"
+				-- return cwd .. "/.env/Scripts/python.exe"
+				return cwd .. "/.env/bin/python"
 			end
 		end,
 		externalConsole = false,

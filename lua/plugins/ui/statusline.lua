@@ -2,7 +2,7 @@ local M = {
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
 	opts = function(_)
-		local icons = require("config.options").icons
+		local icons = require("core.options").icons
 
 		local function fg(name)
 			return function()
@@ -16,8 +16,8 @@ local M = {
 			options = {
 				theme = "auto",
 				globalstatus = true,
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
 				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 			},
 			sections = {
@@ -42,12 +42,12 @@ local M = {
 						path = 1,
 						symbols = { modified = " ", readonly = " ", unnamed = "" },
 					},
-            -- stylua: ignore
-            {
-              function()
-                return "%="
-              end
-            },
+            -- -- stylua: ignore
+            -- {
+            --   function()
+            --     return "%="
+            --   end
+            -- },
 					{
 						function()
 							local msg = "No Active Lsp"

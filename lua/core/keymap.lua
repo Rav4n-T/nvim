@@ -1,6 +1,11 @@
-local wk = require("which-key")
+local wk
+if require("which-key") then
+	wk = require("which-key")
+end
 local Util = require("utils")
-local fn = require("core.fn")
+local dap = require("dap")
+local dapui = require("dapui")
+-- local fn = require("core.fn")
 
 wk.register({
 	["<C-h>"] = { "<C-w>h", "go to the left window" },
@@ -14,11 +19,10 @@ wk.register({
 	["<Tab>"] = { ":bnext<cr>", "go to next buffer" },
 	["<S-Tab>"] = { ":bprevious<cr>", "go to previous buffer" },
 	["K"] = { vim.lsp.buf.hover, "show info" },
-	-- ["<F6>"] = { "<cmd>DapContinue<cr>", "Start debug or step run" },
-	-- ["<F7>"] = { "<cmd>DapStepInto<cr>", "Step into a func or method" },
-	-- ["<F8>"] = { "<cmd>DapStepOut<cr>", "Step out of a func or method" },
-	-- ["<F9>"] = { "<cmd>DapRunToCursor<cr>", "Continues execution to current cursor" },
-	-- ["<F10>"] = { "<cmd>DapTerminate<cr>", "Terminates the debug session" },
+	["<F6>"] = { "<cmd>DapStepOver<cr>", "Step over" },
+	["<F7>"] = { "<cmd>DapStepInto<cr>", "Step into a func or method" },
+	["<F8>"] = { "<cmd>DapStepOut<cr>", "Step out of a func or method" },
+	["<F9>"] = { "<cmd>DapRunToCursor<cr>", "Continues execution to current cursor" },
 	d = {
 		name = "delete",
 		H = { "d0", "delete to line head" },
@@ -57,13 +61,35 @@ wk.register({
 		t = { require("nvim-toggler").toggle, "Invert current word" },
 		k = { vim.lsp.buf.signature_help, "show signature help" },
 	},
+	b = {
+		name = "buffer",
+		d = {
+			name = "delete",
+			c = { "<cmd>BDelete this<cr>", "Delete current buffer" },
+			o = { "<cmd>BDelete other<cr>", "Delete other buffers" },
+		},
+	},
 	d = {
 		name = "delete/diagnostics/debug",
-		-- b = { "<cmd>DapToggleBreakpoint<cr>", "Creates or removes a breakpoint" },
-		c = { "<cmd>BDelete this<cr>", "Delete current buffer" },
-		l = { "<cmd>Telescope diagnostics<cr>", "Show all diagnostics list" },
-		o = { "<cmd>BDelete other<cr>", "Delete other buffers" },
-		-- r = { "<cmd>DapRestartFrame<cr>", "Restart the current session" },
+		b = { "<cmd>DapToggleBreakpoint<cr>", "Creates or removes a breakpoint" },
+		z = {
+			function()
+				dapui.float_element("stacks", { position = "center", width = 90, height = 80, enter = true })
+			end,
+			"Open float element: stack trace",
+		},
+		d = { "<cmd>DapTerminate<cr>", "Terminates the debug session" },
+		n = { "<cmd>DapContinue<cr>", "Start debug or step run" },
+		r = { "<cmd>DapRerun<cr>", "Restart the current session" },
+		l = {
+			function()
+				dap.run_last()
+			end,
+			"Re-runs the last debug adapter configuration that ran using",
+		},
+		f = { "<cmd>DapRestartFrame<cr>", "Restart the current frame" },
+		s = { "<cmd>DapStop<cr>", "Restart the current session" },
+		t = { "<cmd>Telescope diagnostics<cr>", "Show all diagnostics list" },
 	},
 	f = {
 		name = "file/find", -- optional group name

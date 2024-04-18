@@ -36,6 +36,15 @@ M.codelldb = {
 	},
 }
 
+M.dlv = {
+	type = "server",
+	port = "${port}",
+	executable = {
+		command = "dlv",
+		args = { "dap", "-l", "127.0.0.1:${port}" },
+	},
+}
+
 M.python = function(cb, config)
 	if config.requet == "attach" then
 		---@diagnostic disable-next-line: undefined-field
@@ -53,7 +62,7 @@ M.python = function(cb, config)
 	else
 		cb({
 			type = "executable",
-			command = ".env/Scripts/python",
+			command = ".env/bin/python",
 			args = { "-m", "debugpy.adapter" },
 			options = {
 				source_filetype = "python",

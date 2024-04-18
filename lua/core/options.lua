@@ -6,6 +6,7 @@ M.options = {
 		number = true, --Enable number line
 		signcolumn = "number", --Set signcolum line in number line
 		guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
+		cursorline = true,
 		clipboard = "unnamedplus", --Enable system clipboard
 		-- set status line  never show
 		laststatus = 0,
@@ -26,9 +27,9 @@ M.options = {
 		fileencodings = "ucs-bom,utf-8,gbk,cp936,gb18030,gb2312",
 		-- set fold
 		foldmethod = "expr",
-		foldenable = false,
+		foldenable = true,
 		foldexpr = "nvim_treesitter#foldexpr()",
-		foldlevel = 8,
+		foldlevel = 2,
 		-- set cancel highlight, ignore case
 		hlsearch = false,
 		incsearch = true,
@@ -75,11 +76,11 @@ M.icons = {
 		removed = "- ",
 	},
 	debug = {
-		error = "🛑",
+		error = "",
 		condition = "󰟃",
 		rejected = "󰃤",
 		logpoint = "",
-		stopped = "󰜴",
+		stopped = "",
 	},
 }
 

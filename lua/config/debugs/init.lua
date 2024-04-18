@@ -1,7 +1,7 @@
 local M = {}
 M.dap_breakpoint = {
 	error = {
-		text = "🛑",
+		text = "",
 		texthl = "DapBreakpoint",
 		linehl = "DapBreakpoint",
 		numhl = "DapBreakpoint",
@@ -25,7 +25,7 @@ M.dap_breakpoint = {
 		numhl = "DapLogPoint",
 	},
 	stopped = {
-		text = "󰜴",
+		text = "",
 		texthl = "DapStopped",
 		linehl = "DapStopped",
 		numhl = "DapStopped",

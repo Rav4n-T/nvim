@@ -66,12 +66,12 @@ local M = {
 				{ name = "buffer", priority = 7 },
 				{
 					name = "path",
-					option = {
-						pathMappings = {
-							["@"] = "${folder}/src",
-							["/"] = "${folder}/public/",
-						},
-					},
+					-- option = {
+					-- 	pathMappings = {
+					-- 		["@"] = "${folder}/src",
+					-- 		["/"] = "${folder}/public/",
+					-- 	},
+					-- },
 				},
 			}),
 			mapping = cmp.mapping.preset.insert({

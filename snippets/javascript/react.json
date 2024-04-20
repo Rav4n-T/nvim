@@ -2,29 +2,15 @@
   "New React Function": {
     "prefix": "nrf",
     "body": [
-      "const ${TM_FILENAME_BASE} = () => {",
+      "const ${TM_FILENAME_BASE}$1 = ($2) => {",
       "\treturn (",
       "\t\t<>",
-      "\t\t\t$1",
+      "\t\t\t${TM_FILENAME_BASE}$0",
       "\t\t</>",
       "\t);",
       "};",
       "",
-      "export default ${TM_FILENAME_BASE};"
-    ]
-  },
-  "New React Function With CustomName": {
-    "prefix": "ncrf",
-    "body": [
-      "const $1 = () => {",
-      "\treturn (",
-      "\t\t<>",
-      "\t\t\t$0",
-      "\t\t</>",
-      "\t);",
-      "};",
-      "",
-      "export default $1;"
+      "export default ${TM_FILENAME_BASE}$1;"
     ]
   }
 }

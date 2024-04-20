@@ -10,7 +10,7 @@ local M = {
 		end,
 
 		background_colour = "#000000",
-		stages = "fade_in_slide_out",
+		stages = "slide", -- fade_in_slide_out | fade | slide | static
 		render = "wrapped-compact",
 		icons = {
 			DEBUG = "",

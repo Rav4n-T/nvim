@@ -5,7 +5,7 @@ M.options = {
 	o = {
 		number = true, --Enable number line
 		signcolumn = "number", --Set signcolum line in number line
-		guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
+		-- guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
 		cursorline = true,
 		clipboard = "unnamedplus", --Enable system clipboard
 		-- set status line  never show
@@ -27,7 +27,7 @@ M.options = {
 		fileencodings = "ucs-bom,utf-8,gbk,cp936,gb18030,gb2312",
 		-- set fold
 		foldmethod = "expr",
-		foldenable = true,
+		foldenable = false,
 		foldexpr = "nvim_treesitter#foldexpr()",
 		foldlevel = 2,
 		-- set cancel highlight, ignore case

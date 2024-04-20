@@ -1,7 +1,7 @@
 local M = {}
 table.insert(M, require("plugins.edit.cmp"))
 table.insert(M, require("plugins.edit.comment"))
-table.insert(M, require("plugins.edit.cut"))
+-- table.insert(M, require("plugins.edit.cut"))
 table.insert(M, require("plugins.edit.format"))
 table.insert(M, require("plugins.edit.indent"))
 table.insert(M, require("plugins.edit.lastplace"))

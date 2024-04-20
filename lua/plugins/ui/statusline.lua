@@ -16,7 +16,7 @@ local M = {
 			options = {
 				theme = "auto",
 				globalstatus = true,
-				component_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
 			},
@@ -36,18 +36,23 @@ local M = {
 					},
 				},
 				lualine_c = {
-					{ "filetype", icon_only = true, padding = { left = 1, right = 0 } },
+					{ "filetype", icon_only = false, padding = { left = 1, right = 0 } },
 					{
 						"filename",
-						path = 1,
-						symbols = { modified = " ", readonly = " ", unnamed = "" },
+						path = 0,
+						symbols = {
+							modified = " ",
+							readonly = " ",
+							unnamed = "",
+							newfile = "",
+						},
 					},
-            -- -- stylua: ignore
-            -- {
-            --   function()
-            --     return "%="
-            --   end
-            -- },
+					-- -- stylua: ignore
+					-- {
+					--   function()
+					--     return "%="
+					--   end
+					-- },
 					{
 						function()
 							local msg = "No Active Lsp"
@@ -85,7 +90,20 @@ local M = {
 					},
 				},
 				lualine_y = {
+					{
+						require("noice").api.statusline.mode.get,
+						cond = require("noice").api.statusline.mode.has,
+						color = { fg = "#ff9e64" },
+					},
 					{ "encoding", padding = { left = 1, right = 0 } },
+					{
+						"fileformat",
+						symbols = {
+							unix = "", -- e712
+							dos = "", -- e70f
+							mac = "", -- e711
+						},
+					},
 					{ "progress", separator = "", padding = { left = 1, right = 1 } },
 					{ "location", padding = { left = 0, right = 1 } },
 				},

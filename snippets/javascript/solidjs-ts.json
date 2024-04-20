@@ -2,17 +2,16 @@
   "New Solidjs Function": {
     "prefix": "nsf",
     "body": [
-      "import type { Component } from 'solid-js';",
       "",
-      "const ${TM_FILENAME_BASE}: Component = () => {",
+      "const ${1:$TM_FILENAME_BASE}$2 = ($3) => {",
       "\treturn (",
       "\t\t<>",
-      "\t\t\t$1",
+      "\t\t\t${1:$TM_FILENAME_BASE}$0",
       "\t\t</>",
       "\t);",
       "};",
       "",
-      "export default ${TM_FILENAME_BASE};"
+      "export default ${1:$TM_FILENAME_BASE};"
     ]
   },
   "Solidjs Create Signal": {

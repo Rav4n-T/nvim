@@ -3,7 +3,7 @@ local M = {
 		"brenoprata10/nvim-highlight-colors",
 		config = function()
 			require("nvim-highlight-colors").setup({
-				render = "background", -- 'background' or 'foreground' or 'virtual'
+				render = "virtual", -- 'background' or 'foreground' or 'virtual'
 				enable_named_colors = true,
 				enable_tailwind = true,
 				custom_colors = {

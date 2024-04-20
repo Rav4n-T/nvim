@@ -12,7 +12,37 @@
       "}${0}"
     ]
   },
-  "new solid project jsconfig": {
+  "new react project tsconfig": {
+    "prefix": "nrjc",
+    "body": [
+      "{",
+      "\t\"compilerOptions\": {",
+      "\t\t\"target\": \"ESNext\",",
+      "\t\t\"module\": \"ESNext\",",
+      "\t\t\"moduleResolution\": \"bundler\",",
+      "\t\t\"lib\": [\"dom\", \"dom.iterable\", \"esnext\"],",
+      "\t\t\"composite\": true,",
+      "\t\t\"allowSyntheticDefaultImports\": true,",
+      "\t\t\"esModuleInterop\": true,",
+      "\t\t\"jsx\": \"preserve\",",
+      "\t\t\"allowJs\": true,",
+      "\t\t\"noEmit\": true,",
+      "\t\t\"strict\": false,",
+      "\t\t\"skipLibCheck\": true,",
+      "\t\t\"baseUrl\": \".\",",
+      "\t\t\"paths\": {",
+      "\t\t\t\"@/*\": [\"./src/*\"],",
+      "\t\t\t\"/*\": [\"./public/*\"],",
+      "\t\t},",
+      "\t\t\"resolveJsonModule\": true,",
+      "\t\t\"isolatedModules\": true,",
+      "\t},",
+      "\t\"include\": [\"src\",\"**/*.js\", \"**/*.jsx\"]",
+      "\t\"exclude\": [\"node_modules\"]",
+      "}"
+    ]
+  },
+  "new solid project tsconfig": {
     "prefix": "nsjc",
     "body": [
       "{",

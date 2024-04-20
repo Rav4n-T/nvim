@@ -19,8 +19,8 @@ local M = {
 			css = { "prettier" },
 			less = { "prettier" },
 			scss = { "prettier" },
-			json = { "jq" },
-			jsonc = { "jq" },
+			json = { "prettier" },
+			jsonc = { "prettier" },
 			markdown = { "prettier" },
 			yaml = { "prettier" },
 			sql = { "sqlfmt" },
@@ -29,6 +29,11 @@ local M = {
 			timeout_ms = 500,
 			lsp_fallback = false,
 		},
+		-- formatters = {
+		-- 	prettier = {
+		-- 		args = { "--stdin-filepath", "$FILENAME" },
+		-- 	},
+		-- },
 	},
 }
 

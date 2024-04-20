@@ -1,15 +1,66 @@
 local wk = require("which-key")
 local utils = require("utils")
 
+local create_command = vim.api.nvim_create_user_command
 local add_command = vim.api.nvim_create_autocmd
 local add_augroup = vim.api.nvim_create_augroup
 local group = add_augroup("stay_centered", { clear = true })
 
+-- create user command
+create_command("Format", function(args)
+	local range = nil
+	if args.count ~= -1 then
+		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+		range = {
+			start = { args.line1, 0 },
+			["end"] = { args.line2, end_line:len() },
+		}
+	end
+	require("conform").format({ async = true, lsp_fallback = true, range = range })
+end, { range = true })
+
+-- add auto command
+
+-- highlight on yank
 add_command("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({
 			higroup = "IncSearch",
 			timeout = 300,
+		})
+	end,
+})
+
+-- Auto remove unused imports and sort imports with fle write
+add_command("BufWritePre", {
+	pattern = { "*.js", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.mts" },
+	callback = function()
+		vim.cmd("TSToolsAddMissingImports sync")
+		vim.cmd("TSToolsOrganizeImports sync")
+	end,
+})
+
+-- Change fcitx5 status on insertLeave
+add_command("InsertLeave", {
+	callback = function()
+		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
+		if input_status == 2 then
+			vim.fn.system("fcitx5-remote -c")
+		end
+		-- auto format in InsertLeave
+		-- vim.cmd("Format")
+	end,
+})
+
+-- Add run keybind
+add_command("FileType", {
+	pattern = "c,cpp,python",
+	callback = function()
+		wk.register({
+			["<F5>"] = {
+				utils.runCode,
+				"Compilite or Run",
+			},
 		})
 	end,
 })
@@ -38,41 +89,7 @@ add_command("TextYankPost", {
 --   end,
 -- })
 
-add_command("FileType", {
-	pattern = "c,cpp,python",
-	callback = function()
-		wk.register({
-			["<F5>"] = {
-				utils.runCode,
-				"Compilite or Run",
-			},
-		})
-	end,
-})
-
-vim.api.nvim_create_user_command("Format", function(args)
-	local range = nil
-	if args.count ~= -1 then
-		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-		range = {
-			start = { args.line1, 0 },
-			["end"] = { args.line2, end_line:len() },
-		}
-	end
-	require("conform").format({ async = true, lsp_fallback = true, range = range })
-end, { range = true })
-
-add_command("InsertLeave", {
-	callback = function()
-		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
-		if input_status == 2 then
-			vim.fn.system("fcitx5-remote -c")
-		end
-		-- auto format in InsertLeave
-		-- vim.cmd("Format")
-	end,
-})
-
+-- Change cursor shape when neovim exit
 add_command("ExitPre", {
 	group = vim.api.nvim_create_augroup("Exit", { clear = true }),
 	command = "set guicursor=a:ver90",
@@ -80,7 +97,6 @@ add_command("ExitPre", {
 })
 
 -- stay current lin on screent center
-
 add_command("CursorMovedI", {
 	group = group,
 	callback = function()

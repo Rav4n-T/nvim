@@ -45,12 +45,12 @@ local M = {
 				spell_foreground = false,
 				show_eob = true,
 				float_style = "dim", -- bright | dim
-				on_highlights = function(hl, palette)
-					hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
-					hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
-					hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
-					hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
-				end,
+				-- on_highlights = function(hl, palette)
+				-- 	hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
+				-- 	hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
+				-- 	hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
+				-- 	hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
+				-- end,
 				colours_override = function(_) end,
 			})
 		end,

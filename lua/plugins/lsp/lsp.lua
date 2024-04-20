@@ -4,9 +4,7 @@ local M = {
 	dependencies = {
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
-		{
-			"hrsh7th/cmp-nvim-lsp",
-		},
+		{ "hrsh7th/cmp-nvim-lsp" },
 	},
 	---@class PluginLspOpts
 	opts = {
@@ -82,34 +80,34 @@ local M = {
 					includeLanguages = { typescriptreact = "html" },
 				},
 			},
-			tsserver = {},
-			volar = {
-				filetypes = { "vue" },
-				init_options = {
-					LanguageFeatures = {
-						completion = {
-							preferredTagNameCase = "kebab",
-							preferredAttrNameCase = "camel",
-						},
-					},
-				},
-			},
+			-- tsserver = {},
+			-- volar = {
+			-- 	filetypes = { "vue" },
+			-- 	init_options = {
+			-- 		LanguageFeatures = {
+			-- 			completion = {
+			-- 				preferredTagNameCase = "kebab",
+			-- 				preferredAttrNameCase = "camel",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 			tailwindcss = {},
 			jsonls = {},
-			pyright = {},
-			cssls = {
-				filetypes = {
-					"css",
-					"scss",
-					"less",
-				},
-				settings = {
-					css = { validate = true, lint = { unknownAtRules = "ignore" } },
-					less = { validate = true, lint = { unknownAtRules = "ignore" } },
-					scss = { validate = true, lint = { unknownAtRules = "ignore" } },
-				},
-				single_file_support = true,
-			},
+			-- pyright = {},
+			-- cssls = {
+			-- 	filetypes = {
+			-- 		"css",
+			-- 		"scss",
+			-- 		"less",
+			-- 	},
+			-- 	settings = {
+			-- 		css = { validate = true, lint = { unknownAtRules = "ignore" } },
+			-- 		less = { validate = true, lint = { unknownAtRules = "ignore" } },
+			-- 		scss = { validate = true, lint = { unknownAtRules = "ignore" } },
+			-- 	},
+			-- 	single_file_support = true,
+			-- },
 		},
 		setup = {},
 	},

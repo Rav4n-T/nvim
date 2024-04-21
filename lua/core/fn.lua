@@ -31,27 +31,48 @@ add_command("TextYankPost", {
 	end,
 })
 
--- Auto remove unused imports and sort imports with fle write
-add_command("BufWritePre", {
-	pattern = { "*.js", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.mts" },
-	callback = function()
-		vim.cmd("TSToolsAddMissingImports sync")
-		vim.cmd("TSToolsOrganizeImports sync")
-	end,
+-- Change cursor shape when neovim exit
+add_command("ExitPre", {
+	group = vim.api.nvim_create_augroup("Exit", { clear = true }),
+	command = "set guicursor=a:ver90",
+	desc = "Set cursor back to beam when leaving Neovim.",
 })
 
--- Change fcitx5 status on insertLeave
-add_command("InsertLeave", {
+-- stay current lin on screent center
+-- add_command("CursorMovedI", {
+-- 	group = group,
+-- 	callback = function()
+-- 		local line = vim.api.nvim_win_get_cursor(0)[1]
+-- 		if line ~= vim.b.last_line then
+-- 			vim.cmd("norm! zz")
+-- 			vim.b.last_line = line
+-- 			local column = vim.fn.getcurpos()[5]
+-- 			vim.fn.cursor({ line, column })
+-- 		end
+-- 	end,
+-- })
+
+add_command("CursorMoved", {
+	group = group,
 	callback = function()
-		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
-		if input_status == 2 then
-			vim.fn.system("fcitx5-remote -c")
+		local line = vim.api.nvim_win_get_cursor(0)[1]
+		if line ~= vim.b.last_line then
+			vim.cmd("norm! zz")
+			vim.b.last_line = line
 		end
-		-- auto format in InsertLeave
-		-- vim.cmd("Format")
 	end,
 })
 
+add_command("BufEnter", {
+	group = group,
+	callback = function()
+		local line = vim.api.nvim_win_get_cursor(0)[1]
+		if line ~= vim.b.last_line then
+			vim.cmd("norm! zz")
+			vim.b.last_line = line
+		end
+	end,
+})
 -- Add run keybind
 add_command("FileType", {
 	pattern = "c,cpp,python",
@@ -89,43 +110,21 @@ add_command("FileType", {
 --   end,
 -- })
 
--- Change cursor shape when neovim exit
-add_command("ExitPre", {
-	group = vim.api.nvim_create_augroup("Exit", { clear = true }),
-	command = "set guicursor=a:ver90",
-	desc = "Set cursor back to beam when leaving Neovim.",
+-- Auto remove unused imports and sort imports with buferr write (typescript-tools)
+add_command("BufWritePre", {
+	pattern = { "*.js", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.mts" },
+	callback = function()
+		vim.cmd("TSToolsAddMissingImports sync")
+		vim.cmd("TSToolsOrganizeImports sync")
+	end,
 })
 
--- stay current lin on screent center
-add_command("CursorMovedI", {
-	group = group,
+-- Change fcitx5 status on insertLeave
+add_command("InsertLeave", {
 	callback = function()
-		local line = vim.api.nvim_win_get_cursor(0)[1]
-		if line ~= vim.b.last_line then
-			vim.cmd("norm! zz")
-			vim.b.last_line = line
-			local column = vim.fn.getcurpos()[5]
-			vim.fn.cursor({ line, column })
-		end
-	end,
-})
-add_command("CursorMoved", {
-	group = group,
-	callback = function()
-		local line = vim.api.nvim_win_get_cursor(0)[1]
-		if line ~= vim.b.last_line then
-			vim.cmd("norm! zz")
-			vim.b.last_line = line
-		end
-	end,
-})
-add_command("BufEnter", {
-	group = group,
-	callback = function()
-		local line = vim.api.nvim_win_get_cursor(0)[1]
-		if line ~= vim.b.last_line then
-			vim.cmd("norm! zz")
-			vim.b.last_line = line
+		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
+		if input_status == 2 then
+			vim.fn.system("fcitx5-remote -c")
 		end
 	end,
 })

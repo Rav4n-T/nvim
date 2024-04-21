@@ -1,31 +1,25 @@
 local M = {
-	{ -- "jiangmiao/auto-pairs",
-		"m4xshen/autoclose.nvim",
-		event = "InsertEnter",
-		config = function()
-			require("autoclose").setup({
-				keys = {
-					-- ["<"] = { escape = true, close = true, pair = "<>", disabled_filetypes = { "cpp" } },
-				},
-				options = {
-					disable_when_touch = true,
-					touch_regex = "[%w(%[%{]",
-					pair_spaces = true,
-				},
-			})
-		end,
-	},
 	{
-		"utilyre/sentiment.nvim",
-		version = "*",
-		event = "VeryLazy", -- keep for lazy loading
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		opts = {
-			-- config
+			fast_wrap = {
+				map = "<C-e>",
+				chars = { "{", "[", "(", '"', "'", "`" },
+				pattern = [=[[%'%"%>%]%)%}%,]]=],
+				end_key = "j",
+				before_key = "h",
+				after_key = "l",
+				cursor_pos_before = false,
+				keys = "qwertyuiopzxcvbnmasdfghjkl",
+				manual_position = true,
+				highlight = "Search",
+				highlight_grey = "Comment",
+			},
 		},
-		init = function()
-			-- `matchparen.vim` needs to be disabled manually in case of lazy loading
-			vim.g.loaded_matchparen = 1
-		end,
+		-- config = true,
+		-- use opts = {} for passing setup options
+		-- this is equalent to setup({}) function
 	},
 }
 return M

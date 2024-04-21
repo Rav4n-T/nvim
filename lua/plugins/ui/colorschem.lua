@@ -3,8 +3,8 @@ local M = {
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		opts = {
-			undercurl = true,
-			underline = true,
+			undercurl = false,
+			underline = false,
 			bold = true,
 			italic = {
 				strings = true,
@@ -13,14 +13,20 @@ local M = {
 				folds = true,
 			},
 			strikethrough = true,
-			invert_selection = false,
+			invert_selection = true,
 			invert_signs = false,
 			invert_tabline = false,
-			invert_intend_guides = false,
-			inverse = false, -- invert background for search, diffs, statuslines and errors
-			contrast = "hard", -- can be "hard", "soft" or empty string
+			invert_intend_guides = true,
+			inverse = true, -- invert background for search, diffs, statuslines and errors
+			contrast = "soft", -- can be "hard", "soft" or empty string
 			palette_overrides = {},
-			overrides = {},
+			overrides = {
+				String = { italic = false },
+				DiagnosticVirtualTextError = { link = "GruvboxRed", italic = true },
+				DiagnosticVirtualTextWarn = { italic = true },
+				DiagnosticVirtualTextInfo = { italic = true },
+				DiagnosticVirtualTextHint = { italic = true },
+			},
 			dim_inactive = false,
 			transparent_mode = true,
 		},
@@ -32,7 +38,7 @@ local M = {
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
 			require("everforest").setup({
-				background = "medium", -- soft | medium | hard
+				background = "soft", -- soft | medium | hard
 				transparent_background_level = 0.8,
 				italics = true,
 				disable_italic_comments = false,

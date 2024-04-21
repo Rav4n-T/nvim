@@ -1,31 +1,32 @@
+local debugIcon = require("core.options").icons.debug
 local M = {}
 M.dap_breakpoint = {
 	error = {
-		text = "",
+		text = debugIcon.error,
 		texthl = "DapBreakpoint",
 		linehl = "DapBreakpoint",
 		numhl = "DapBreakpoint",
 	},
 	condition = {
-		text = "󰟃",
+		text = debugIcon.condition,
 		texthl = "DapBreakpoint",
 		linehl = "DapBreakpoint",
 		numhl = "DapBreakpoint",
 	},
 	rejected = {
-		text = "󰃤",
+		text = debugIcon.rejected,
 		texthl = "DapBreakpint",
 		linehl = "DapBreakpoint",
 		numhl = "DapBreakpoint",
 	},
 	logpoint = {
-		text = "",
+		text = debugIcon.logpoint,
 		texthl = "DapLogPoint",
 		linehl = "DapLogPoint",
 		numhl = "DapLogPoint",
 	},
 	stopped = {
-		text = "",
+		text = debugIcon.stopped,
 		texthl = "DapStopped",
 		linehl = "DapStopped",
 		numhl = "DapStopped",

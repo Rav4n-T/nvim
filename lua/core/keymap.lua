@@ -50,6 +50,7 @@ wk.register({
 wk.register({
 	["<S-Tab>"] = { "<gv", "indent to the right" },
 	["<Tab>"] = { ">gv", "indent to the left" },
+	f = { "<cmd>Format<cr><esc>", "sync format current file" },
 }, { mode = "v" })
 
 wk.register({

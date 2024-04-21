@@ -1,3 +1,4 @@
+local msgIcons = require("core.options").icons.msg
 local M = {
 	"rcarriga/nvim-notify",
 	opts = {
@@ -13,11 +14,11 @@ local M = {
 		stages = "slide", -- fade_in_slide_out | fade | slide | static
 		render = "wrapped-compact",
 		icons = {
-			DEBUG = "",
-			ERROR = "",
-			INFO = "",
-			TRACE = "✎",
-			WARN = "",
+			DEBUG = msgIcons.debug,
+			ERROR = msgIcons.error,
+			INFO = msgIcons.info,
+			TRACE = msgIcons.trace,
+			WARN = msgIcons.warn,
 		},
 		top_down = false,
 	},

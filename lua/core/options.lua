@@ -6,7 +6,7 @@ M.options = {
 		number = true, --Enable number line
 		signcolumn = "number", --Set signcolum line in number line
 		-- guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
-		cursorline = true,
+		-- cursorline = true,
 		clipboard = "unnamedplus", --Enable system clipboard
 		-- set status line  never show
 		laststatus = 0,
@@ -69,7 +69,12 @@ M.options = {
 }
 
 M.icons = {
-	diagnostics = { Error = " ", Warn = " ", Info = " " },
+	diagnostics = {
+		Error = "",
+		Warn = "",
+		Info = "",
+		Hint = "",
+	},
 	git = {
 		added = "+ ",
 		modified = "~ ",
@@ -81,6 +86,41 @@ M.icons = {
 		rejected = "󰃤",
 		logpoint = "",
 		stopped = "",
+	},
+	msg = {
+		debug = "",
+		error = "",
+		info = "",
+		trace = "✎",
+		warn = "",
+	},
+	kind_icons = {
+		Text = "",
+		Method = "󰆧",
+		Function = "󰊕",
+		Constructor = "",
+		Field = "󰇽",
+		Variable = "󰂡",
+		Class = "󰠱",
+		Interface = "",
+		Module = "",
+		Property = "󰜢",
+		Unit = "",
+		Value = "󰎠",
+		Enum = "",
+		Keyword = "󰌋",
+		Snippet = "",
+		Color = "󰏘",
+		File = "󰈙",
+		Reference = "",
+		Folder = "󰉋",
+		EnumMember = "",
+		Constant = "󰏿",
+		Struct = "",
+		Event = "",
+		Operator = "󰆕",
+		TypeParameter = "󰅲",
+		Codeium = "󱚡",
 	},
 }
 

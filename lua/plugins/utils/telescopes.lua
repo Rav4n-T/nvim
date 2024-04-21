@@ -56,6 +56,7 @@ local M = {
 	config = function(_, opts)
 		require("telescope").setup(opts)
 		require("telescope").load_extension("project")
+		require("telescope").load_extension("noice")
 	end,
 }
 return M

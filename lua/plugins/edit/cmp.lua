@@ -3,17 +3,41 @@ local M = {
 	dependencies = {
 		{ "L3MON4D3/LuaSnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "kola-web/cmp-path" },
-		{ "hrsh7th/cmp-nvim-lua" },
-		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
+		{ "hrsh7th/cmp-cmdline" },
+		{ "hrsh7th/cmp-buffer" },
+		-- { "ray-x/cmp-treesitter" },
+		{ "hrsh7th/cmp-nvim-lua" },
+		{ "kola-web/cmp-path" },
 	},
 	event = { "InsertEnter", "CmdlineEnter" },
 	opts = {},
 	config = function(_, _)
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		local ts_utils = require("nvim-treesitter.ts_utils")
+		local kind_icons = require("core.options").icons.kind_icons
+
+		local ts_node_func_parens_disabled = {
+			-- ecma
+			named_imports = true,
+			-- rust
+			use_declaration = true,
+		}
+
+		local default_handler = cmp_autopairs.filetypes["*"]["("].handler
+		cmp_autopairs.filetypes["*"]["("].handler = function(char, item, bufnr, rules, commit_character)
+			local node_type = ts_utils.get_node_at_cursor():type()
+			if ts_node_func_parens_disabled[node_type] then
+				if item.data then
+					item.data.funcParensDisabled = true
+				else
+					char = ""
+				end
+			end
+			default_handler(char, item, bufnr, rules, commit_character)
+		end
 
 		require("luasnip").setup({
 			region_check_events = "CursorHold,InsertLeave",
@@ -21,6 +45,30 @@ local M = {
 		})
 		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+
+		cmp.event:on(
+			"confirm_done",
+			cmp_autopairs.on_confirm_done({
+				sh = false,
+			})
+		)
+
+		-- gray
+		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#D5C4A1" })
+		-- blue
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#D79921" })
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { bg = "NONE", fg = "#282828" })
+		-- light blue
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#689D6A" })
+		vim.api.nvim_set_hl(0, "CmpItemKindInterface", { bg = "NONE", fg = "#CC241D" })
+		vim.api.nvim_set_hl(0, "CmpItemKindText", { bg = "NONE", fg = "#3C8588" })
+		-- pink
+		vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#B16286" })
+		vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+		-- front
+		vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#FBF1C7" })
+		vim.api.nvim_set_hl(0, "CmpItemKindProperty", { bg = "NONE", fg = "#D65D0E" })
+		vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
 		cmp.setup({
 			enabled = function()
@@ -43,11 +91,53 @@ local M = {
 				end
 				return true
 			end,
+			performance = {
+				max_view_entries = 10,
+			},
+			-- preselect = cmp.PreselectMode.Item, -- cmp.PreselectMode.None | cmp.PreselectMode.Item
 			completion = {
 				keyword_length = 1,
 			},
-			performance = {
-				max_view_entries = 10,
+			window = {
+				-- completion = cmp.config.window.bordered(),
+				-- documentation = cmp.config.window.bordered(),
+			},
+			formatting = {
+				format = function(entry, vim_item)
+					-- Kind icons
+					vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+					-- Source
+					vim_item.menu = ({
+						nvim_lsp = "(Lsp)",
+						luasnip = "(Snp)",
+						nvim_lua = "(Lua)",
+						codeium = "(Ai)",
+						path = "(Pth)",
+						buffer = "(Buf)",
+					})[entry.source.name]
+					return vim_item
+				end,
+			},
+			matching = {
+				disallow_fuzzy_matching = true,
+				disallow_fullfuzzy_matching = true,
+				disallow_partial_matching = true,
+				disallow_prefix_unmatching = true,
+				disallow_symbol_nonprefix_matching = true,
+			},
+			sorting = {
+				priority_weight = 2,
+				comparators = {
+					cmp.config.compare.offset, -- 偏移量(没看懂)
+					cmp.config.compare.exact, -- 精确匹配
+					cmp.config.compare.scopes, -- 局部变量比全局变量高
+					cmp.config.compare.recently_used, -- 最近使用
+					cmp.config.compare.order, -- 根据id 越小
+					cmp.config.compare.score, -- 根据设置的排名索引分数
+					cmp.config.compare.locality, -- 离当前光标越近
+					cmp.config.compare.kind, -- 类型越小越高
+					cmp.config.compare.length, -- 字符越短
+				},
 			},
 			experimental = {
 				ghost_text = true, -- this feature conflict with copilot.vim's preview.
@@ -58,14 +148,22 @@ local M = {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "nvim_lua", priority = 8 },
-				{ name = "nvim_lsp", trigger_characters = { "-" }, priority = 8 },
-				{ name = "luasnip", priority = 7 },
-				{ name = "codeium", priority = 6 },
-			}, {
-				{ name = "buffer", priority = 7 },
+				{
+					name = "nvim_lsp",
+					keyword_pattern = [[\k\+]],
+					priority = 9,
+					group_index = 1,
+				},
+				{ name = "luasnip", priority = 9, group_index = 1 },
+				{ name = "codeium", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
+				{ name = "buffer", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
+				-- { name = "treesitter", priority = 7, group_index = 1 },
+				{ name = "nvim_lua", priority = 8, group_index = 1 },
 				{
 					name = "path",
+					keyword_pattern = [[\k\+]],
+					priority = 7,
+					group_index = 1,
 					-- option = {
 					-- 	pathMappings = {
 					-- 		["@"] = "${folder}/src",
@@ -103,21 +201,6 @@ local M = {
 				}),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
-			sorting = {
-				-- priority_weight = 2,
-				comparators = {
-					cmp.config.compare.offset,
-					cmp.config.compare.exact,
-					cmp.config.compare.scopes,
-					cmp.config.compare.score,
-					cmp.config.compare.recently_used,
-					cmp.config.compare.locality,
-					cmp.config.compare.kind,
-					cmp.config.compare.sort_text,
-					cmp.config.compare.length,
-					cmp.config.compare.order,
-				},
-			},
 		})
 		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),

@@ -32,7 +32,13 @@
           "html",
           "jade",
           "pug",
-          "eruby"
+          "eruby",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte"
         ],
         "path": "./html.json"
       },

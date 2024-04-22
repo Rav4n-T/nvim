@@ -37,7 +37,7 @@
       "\t\t\"resolveJsonModule\": true,",
       "\t\t\"isolatedModules\": true,",
       "\t},",
-      "\t\"include\": [\"src\",\"**/*.js\", \"**/*.jsx\"]",
+      "\t\"include\": [\"src\",\"**/*.js\", \"**/*.jsx\"],",
       "\t\"exclude\": [\"node_modules\"]",
       "}"
     ]

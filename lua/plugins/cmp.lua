@@ -1,5 +1,6 @@
 local M = {
 	"hrsh7th/nvim-cmp",
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "L3MON4D3/LuaSnip" },
 		{ "hrsh7th/cmp-nvim-lsp" },
@@ -10,14 +11,12 @@ local M = {
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "kola-web/cmp-path" },
 	},
-	event = { "InsertEnter", "CmdlineEnter" },
 	opts = {},
 	config = function(_, _)
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
-		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 		local ts_utils = require("nvim-treesitter.ts_utils")
-		local kind_icons = require("core.options").icons.kind_icons
+		local kind_icons = require("config.options").icons.kind_icons
 
 		local ts_node_func_parens_disabled = {
 			-- ecma
@@ -26,32 +25,12 @@ local M = {
 			use_declaration = true,
 		}
 
-		local default_handler = cmp_autopairs.filetypes["*"]["("].handler
-		cmp_autopairs.filetypes["*"]["("].handler = function(char, item, bufnr, rules, commit_character)
-			local node_type = ts_utils.get_node_at_cursor():type()
-			if ts_node_func_parens_disabled[node_type] then
-				if item.data then
-					item.data.funcParensDisabled = true
-				else
-					char = ""
-				end
-			end
-			default_handler(char, item, bufnr, rules, commit_character)
-		end
-
 		require("luasnip").setup({
 			region_check_events = "CursorHold,InsertLeave",
 			delete_check_events = "TextChanged,InsertEnter",
 		})
 		require("luasnip.loaders.from_vscode").lazy_load()
 		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
-
-		cmp.event:on(
-			"confirm_done",
-			cmp_autopairs.on_confirm_done({
-				sh = false,
-			})
-		)
 
 		-- gray
 		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#D5C4A1" })
@@ -122,6 +101,7 @@ local M = {
 				disallow_fuzzy_matching = true,
 				disallow_fullfuzzy_matching = true,
 				disallow_partial_matching = true,
+				disallow_partial_fuzzy_matching = true,
 				disallow_prefix_unmatching = true,
 				disallow_symbol_nonprefix_matching = true,
 			},

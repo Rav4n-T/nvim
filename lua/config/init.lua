@@ -1,6 +1,6 @@
 local M = {}
-local opts = require("core.options").options
-local load_lazy = require("core.load_plugins")
+local opts = require("config.options").options
+local load_lazy = require("config.load_plugins")
 
 function M.setup()
 	-- set neovim options
@@ -12,12 +12,12 @@ function M.setup()
 	-- set lazy
 	load_lazy.setup()
 	-- keymap
-	require("core.keymap")
+	require("config.keymaps")
 	-- autocommands
-	require("core.fn")
+	require("config.fn")
 	-- neovide
 	if vim.g.neovide then
-		require("core.neovide")
+		require("config.neovide")
 	end
 	-- colorschema
 	vim.cmd.colorscheme("gruvbox")

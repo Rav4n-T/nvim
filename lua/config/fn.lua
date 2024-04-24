@@ -6,19 +6,6 @@ local add_command = vim.api.nvim_create_autocmd
 local add_augroup = vim.api.nvim_create_augroup
 local group = add_augroup("stay_centered", { clear = true })
 
--- create user command
-create_command("Format", function(args)
-	local range = nil
-	if args.count ~= -1 then
-		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-		range = {
-			start = { args.line1, 0 },
-			["end"] = { args.line2, end_line:len() },
-		}
-	end
-	require("conform").format({ async = true, lsp_fallback = true, range = range })
-end, { range = true })
-
 -- add auto command
 
 -- highlight on yank
@@ -109,6 +96,29 @@ add_command("FileType", {
 --     end
 --   end,
 -- })
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("close_with_q", { clear = true }),
+	pattern = {
+		"PlenaryTestPopup",
+		"help",
+		"lspinfo",
+		"notify",
+		"qf",
+		"query",
+		"spectre_panel",
+		"startuptime",
+		"tsplayground",
+		"neotest-output",
+		"checkhealth",
+		"neotest-summary",
+		"neotest-output-panel",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+	end,
+})
 
 -- Auto remove unused imports and sort imports with buferr write (typescript-tools)
 add_command("BufWritePre", {

@@ -118,5 +118,14 @@ M.str2argtable = function(str)
 	end
 	return arg_list
 end
+---@param fn fun()
+function M.on_very_lazy(fn)
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "VeryLazy",
+		callback = function()
+			fn()
+		end,
+	})
+end
 
 return M

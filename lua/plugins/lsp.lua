@@ -1,7 +1,8 @@
-local M = {
+return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
+		{ "folke/neodev.nvim", opts = {} },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
 		{ "hrsh7th/cmp-nvim-lsp" },
@@ -28,21 +29,16 @@ local M = {
 			lua_ls = {
 				settings = {
 					Lua = {
-						runtime = {
-							version = "LuaJIT",
-						},
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						telemetry = {
-							enable = false,
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							codeLens = {
+								enable = true,
+							},
+							completion = {
+								callSnippet = "Replace",
+							},
 						},
 					},
 				},
@@ -122,72 +118,19 @@ local M = {
 	---@param opts PluginLspOpts
 	-- config = function(plugin, opts)
 	config = function(_, opts)
-		vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
-		vim.lsp.handlers["textDocument/signatureHelp"] =
-			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
-		-- diagnostics
-		for name, icon in pairs(require("core.options").icons.diagnostics) do
-			name = "DiagnosticSign" .. name
-			vim.fn.sign_define(name, {
-				text = icon, -- icon | ""
-				texthl = name, -- "name" | ""
-				linehl = "",
-				numhl = "", -- "name" | ""
-			})
-		end
-		vim.diagnostic.config(opts.diagnostics)
+		local lspUtils = require("utils.lsp")
+		lspUtils.setDiagnosticsicon(opts.diagnostics)
+		lspUtils.setLspKeymap()
 
 		-- mason-lspconfig
 		local servers = opts.servers
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 		local ensure_installed = {} ---@type string[]
 
-		local on_attach = function(client, bufnr)
-			vim.api.nvim_create_autocmd("CursorHold", {
-				buffer = bufnr,
-				callback = function()
-					local hover_opts = {
-						focusable = false,
-						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-						border = "rounded",
-						source = "always",
-						prefix = " ",
-						scope = "cursor",
-					}
-					vim.diagnostic.open_float(nil, hover_opts)
-				end,
-			})
-
-			if client.resolved_capabilities.document_highlight then
-				vim.cmd([[
-          hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-          hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-          hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-        ]])
-				vim.api.nvim_create_augroup("lsp_document_highlight", {
-					clear = false,
-				})
-				vim.api.nvim_clear_autocmds({
-					buffer = bufnr,
-					group = "lsp_document_highlight",
-				})
-				vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-					group = "lsp_document_highlight",
-					buffer = bufnr,
-					callback = vim.lsp.buf.document_highlight,
-				})
-				vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-					group = "lsp_document_highlight",
-					buffer = bufnr,
-					callback = vim.lsp.buf.clear_references,
-				})
-			end
-		end
-
 		local function setup(server)
 			local server_opts = vim.tbl_deep_extend("force", {
 				capabilities = vim.deepcopy(capabilities),
-				on_attach = on_attach,
+				on_attach = lspUtils.AttachFn,
 			}, servers[server] or {})
 			require("lspconfig")[server].setup(server_opts)
 		end
@@ -210,4 +153,3 @@ local M = {
 		require("mason-lspconfig").setup_handlers({ setup })
 	end,
 }
-return M

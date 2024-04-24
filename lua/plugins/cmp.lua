@@ -78,8 +78,8 @@ local M = {
 				keyword_length = 1,
 			},
 			window = {
-				-- completion = cmp.config.window.bordered(),
-				-- documentation = cmp.config.window.bordered(),
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
 			},
 			formatting = {
 				format = function(entry, vim_item)

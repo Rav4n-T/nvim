@@ -3,6 +3,7 @@ local datapath = vim.fn.stdpath("data")
 
 M.options = {
 	o = {
+		background = "dark",
 		number = true, --Enable number line
 		signcolumn = "number", --Set signcolum line in number line
 		-- guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
@@ -29,7 +30,7 @@ M.options = {
 		foldmethod = "expr",
 		foldenable = false,
 		foldexpr = "nvim_treesitter#foldexpr()",
-		foldlevel = 2,
+		foldlevel = 99,
 		-- set cancel highlight, ignore case
 		hlsearch = false,
 		incsearch = true,

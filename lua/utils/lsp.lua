@@ -3,7 +3,6 @@ local M = {}
 -- set lsp keymaps
 M.setLspKeymap = function()
 	local map = vim.keymap.set
-	local picker = require("mini.extra").pickers.lsp
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 		callback = function(ev)
@@ -16,47 +15,50 @@ M.setLspKeymap = function()
 				"n",
 				"gd",
 				-- vim.lsp.buf.definition,
-				function()
-					picker({ scope = "definition" })
-				end,
+				"<cmd>Telescope lsp_definitions<cr>",
 				{ desc = "go to definition", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"gt",
 				-- vim.lsp.buf.type_definition,
-				function()
-					picker({ scope = "type_definition" })
-				end,
+				"<cmd>Telescope lsp_type_definitions<cr>",
 				{ desc = "go to type definition", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"gD",
-				-- vim.lsp.buf.declaration,
-				function()
-					picker({ scope = "declaration" })
-				end,
+				vim.lsp.buf.declaration,
 				{ desc = "go to declaration", buffer = ev.buf, remap = true, silent = true }
 			)
 			map("n", "K", vim.lsp.buf.hover, { desc = "lsp hover", buffer = ev.buf, remap = true, silent = true })
 			map(
 				"n",
 				"gi",
+				"<cmd>Telescope lsp_implementations<cr>",
 				-- vim.lsp.buf.implementation,
-				function()
-					picker({ scope = "implementation" })
-				end,
 				{ desc = "go to implementation", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"gr",
 				-- vim.lsp.buf.references,
-				function()
-					picker({ scope = "references" })
-				end,
+				"<cmd>Telescope lsp_references<cr>",
 				{ desc = "go to references", buffer = ev.buf, remap = true, silent = true }
+			)
+			map(
+				"n",
+				"gI",
+				-- vim.lsp.buf.references,
+				"<cmd>Telescope lsp_incoming_calls<cr>",
+				{ desc = "go to incoming calls", buffer = ev.buf, remap = true, silent = true }
+			)
+			map(
+				"n",
+				"go",
+				-- vim.lsp.buf.references,
+				"<cmd>Telescope lsp_outgoing_calls<cr>",
+				{ desc = "go to outgoing calls", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
@@ -109,20 +111,31 @@ M.setDiagnosticsicon = function(opt)
 	vim.diagnostic.config(opt)
 end
 
-M.AttachFn = function(client, bufnr)
+M.AttachFn = function(_, bufnr)
 	vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
 			local hover_opts = {
 				focusable = false,
 				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-				border = "rounded",
+				border = "none",
 				source = "always",
 				prefix = " ",
-				scope = "cursor",
+				scope = "line",
 			}
 			vim.diagnostic.open_float(nil, hover_opts)
 		end,
 	})
 end
+
+M.setFloatWindow = function()
+	local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+		opts = opts or {}
+		opts.border = opts.border or "single"
+		opts.max_width = opts.max_width or 50
+		return orig_util_open_floating_preview(contents, syntax, opts, ...)
+	end
+end
+
 return M

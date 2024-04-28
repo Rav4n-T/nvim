@@ -2,14 +2,14 @@ return {
 	{
 		"folke/noice.nvim",
 		dependencies = {
-
 			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
 		},
 		event = "VeryLazy",
 		opts = {
 			lsp = {
 				progress = {
-					enabled = false,
+					enabled = true,
 				},
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -53,16 +53,16 @@ return {
 				inc_rename = true,
 			},
 		},
-    -- stylua: ignore
-    keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
-    }
+	    -- stylua: ignore
+	    keys = {
+	      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+	      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+	      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
+	      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
+	      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+	      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
+	      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
+	    }
 ,
 	},
 	{
@@ -76,6 +76,7 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
 				callback = function()
+					---@diagnostic disable-next-line missing-fields
 					vim.b.miniindentscope_disable = true
 				end,
 			})
@@ -85,63 +86,6 @@ return {
 		end,
 	},
 	{
-		"declancm/cinnamon.nvim",
-		event = "CursorMoved",
-		config = function()
-			require("cinnamon").setup({
-				-- KEYMAPS:
-				default_keymaps = true, -- Create default keymaps.
-				extra_keymaps = false, -- Create extra keymaps.
-				extended_keymaps = false, -- Create extended keymaps.
-				override_keymaps = false, -- The plugin keymaps will override any existing keymaps.
-
-				-- OPTIONS:
-				always_scroll = true, -- Scroll the cursor even when the window hasn't scrolled.
-				centered = true, -- Keep cursor centered in window when using window scrolling.
-				disabled = false, -- Disables the plugin.
-				default_delay = 7, -- The default delay (in ms) between each line when scrolling.
-				hide_cursor = false, -- Hide the cursor while scrolling. Requires enabling termguicolors!
-				horizontal_scroll = true, -- Enable smooth horizontal scrolling when view shifts left or right.
-				max_length = -1, -- Maximum length (in ms) of a command. The line delay will be
-				-- re-calculated. Setting to -1 will disable this option.
-				scroll_limit = 150, -- Max number of lines moved before scrolling is skipped. Setting
-				-- to -1 will disable this option.
-			})
-		end,
-	},
-	{
-		"ellisonleao/gruvbox.nvim",
-		priority = 1000,
-		opts = {
-			undercurl = false,
-			underline = false,
-			bold = true,
-			italic = {
-				strings = true,
-				comments = true,
-				operators = true,
-				folds = true,
-			},
-			strikethrough = true,
-			invert_selection = true,
-			invert_signs = false,
-			invert_tabline = false,
-			invert_intend_guides = true,
-			inverse = true, -- invert background for search, diffs, statuslines and errors
-			contrast = "soft", -- can be "hard", "soft" or empty string
-			palette_overrides = {},
-			overrides = {
-				String = { italic = false },
-				DiagnosticVirtualTextError = { link = "GruvboxRed", italic = true },
-				DiagnosticVirtualTextWarn = { italic = true },
-				DiagnosticVirtualTextInfo = { italic = true },
-				DiagnosticVirtualTextHint = { italic = true },
-			},
-			dim_inactive = false,
-			transparent_mode = true,
-		},
-	},
-	{
 		"neanias/everforest-nvim",
 		event = "VeryLazy",
 		version = false,
@@ -149,7 +93,7 @@ return {
 		config = function()
 			require("everforest").setup({
 				background = "soft", -- soft | medium | hard
-				transparent_background_level = 0.8,
+				transparent_background_level = 2,
 				italics = true,
 				disable_italic_comments = false,
 				sign_column_background = "none",
@@ -161,12 +105,12 @@ return {
 				spell_foreground = false,
 				show_eob = true,
 				float_style = "dim", -- bright | dim
-				-- on_highlights = function(hl, palette)
-				-- 	hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
-				-- 	hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
-				-- 	hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
-				-- 	hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
-				-- end,
+				on_highlights = function(hl, palette)
+					hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
+					hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
+					hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
+					hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
+				end,
 				colours_override = function(_) end,
 			})
 		end,
@@ -184,11 +128,10 @@ return {
 			require("lualine").setup({
 				options = {
 					theme = "auto",
-					-- theme = "catppuccin",
 					globalstatus = true,
 					icons_enabled = true,
-					-- component_separators = { left = "│", right = "│" },
-					component_separators = { left = "|", right = "|" },
+					component_separators = { left = "│", right = "│" },
+					-- component_separators = { left = "|", right = "|" },
 					section_separators = { left = "", right = "" },
 					disabled_filetypes = {
 						statusline = {
@@ -223,8 +166,8 @@ return {
 							path = 0, -- 2 for full path
 							symbols = {
 								modified = "  ",
-								-- readonly = "  ",
-								-- unnamed = "  ",
+								readonly = "  ",
+								unnamed = "  ",
 							},
 						},
 						"location",

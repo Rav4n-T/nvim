@@ -1,5 +1,4 @@
 local Menu = require("nui.menu")
-local event = require("nui.utils.autocmd").event
 
 local M = function(title)
 	local menu = Menu({
@@ -39,3 +38,4 @@ local M = function(title)
 
 	menu:mount()
 end
+return M

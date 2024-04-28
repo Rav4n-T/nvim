@@ -2,15 +2,13 @@
   "New React Function": {
     "prefix": "nrf",
     "body": [
-      "const ${TM_FILENAME_BASE}$1 = ($2) => {",
+      "export default ($1) => {",
       "\treturn (",
       "\t\t<>",
       "\t\t\t${TM_FILENAME_BASE}$0",
       "\t\t</>",
       "\t);",
-      "};",
-      "",
-      "export default ${TM_FILENAME_BASE}$1;"
+      "};"
     ]
   }
 }

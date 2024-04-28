@@ -15,15 +15,7 @@ local M = {
 	config = function(_, _)
 		local luasnip = require("luasnip")
 		local cmp = require("cmp")
-		local ts_utils = require("nvim-treesitter.ts_utils")
 		local kind_icons = require("config.options").icons.kind_icons
-
-		local ts_node_func_parens_disabled = {
-			-- ecma
-			named_imports = true,
-			-- rust
-			use_declaration = true,
-		}
 
 		require("luasnip").setup({
 			region_check_events = "CursorHold,InsertLeave",
@@ -70,6 +62,7 @@ local M = {
 				end
 				return true
 			end,
+			---@diagnostic disable-next-line missing-fields
 			performance = {
 				max_view_entries = 10,
 			},
@@ -78,9 +71,10 @@ local M = {
 				keyword_length = 1,
 			},
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				-- completion = cmp.config.window.bordered(),
+				-- documentation = cmp.config.window.bordered(),
 			},
+			---@diagnostic disable-next-line missing-fields
 			formatting = {
 				format = function(entry, vim_item)
 					-- Kind icons

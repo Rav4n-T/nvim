@@ -8,6 +8,7 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
+			---@diagnostic disable-next-line missing-fields
 			configs.setup({
 				ensure_installed = {
 					"vim",
@@ -54,27 +55,57 @@ return {
 		config = true,
 	},
 
-	{ "echasnovski/mini.pairs", event = "InsertEnter", version = false, config = true },
+	-- { "echasnovski/mini.pairs", event = "InsertEnter", version = false, config = true },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			fast_wrap = {
+				map = "<C-e>",
+				chars = { "{", "[", "(", '"', "'", "`" },
+				pattern = [=[[%'%"%>%]%)%}%,]]=],
+				end_key = "j",
+				before_key = "h",
+				after_key = "l",
+				cursor_pos_before = false,
+				keys = "qwertyuiopzxcvbnmasdfghjkl",
+				manual_position = true,
+				highlight = "Search",
+				highlight_grey = "Comment",
+			},
+		},
+		-- config = true,
+		-- use opts = {} for passing setup options
+		-- this is equalent to setup({}) function
+	},
 
 	{
 		"echasnovski/mini.ai",
 		event = "VeryLazy",
 		version = false,
-		config = function()
-			local gen_ai_spec = require("mini.extra").gen_ai_spec
-			require("mini.ai").setup({
-				custom_textobjects = {
-					B = gen_ai_spec.buffer(),
-					D = gen_ai_spec.diagnostic(),
-					I = gen_ai_spec.indent(),
-					L = gen_ai_spec.line(),
-					N = gen_ai_spec.number(),
-				},
-			})
-		end,
+		-- config = function()
+		-- 	local gen_ai_spec = require("mini.extra").gen_ai_spec
+		-- 	require("mini.ai").setup({
+		-- 		custom_textobjects = {
+		-- 			B = gen_ai_spec.buffer(),
+		-- 			D = gen_ai_spec.diagnostic(),
+		-- 			I = gen_ai_spec.indent(),
+		-- 			L = gen_ai_spec.line(),
+		-- 			N = gen_ai_spec.number(),
+		-- 		},
+		-- 	})
+		-- end,
 	},
 
-	{ "echasnovski/mini.surround", event = "InsertEnter", version = false, config = true },
+	-- { "echasnovski/mini.surround", event = "InsertEnter", version = false, config = true },
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "BufEnter",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	},
 
 	-- Comment
 	{

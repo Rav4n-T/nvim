@@ -1,6 +1,6 @@
 local M = {}
 
-M.root_patterns = { ".git", "lua", "package.json" }
+M.root_patterns = { ".git",  "go.mod", "cargo.toml", "package.json" }
 
 function M.get_root()
 	---@type string?

@@ -1,13 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		keys = {
-			{
-				"<leader>db",
-				"<cmd>DapToggleBreakpoint<cr>",
-				{ desc = "Toggle Breakpoint", remap = true, silent = true },
-			},
-		},
+		ft = { "c", "cpp", "go", "py", "rust" },
 		dependencies = {
 			{
 				"rcarriga/nvim-dap-ui",
@@ -77,9 +71,6 @@ return {
 			{
 				"theHamsta/nvim-dap-virtual-text",
 				config = true,
-			},
-			{
-				"leoluz/nvim-dap-go",
 			},
 		},
 		config = function()

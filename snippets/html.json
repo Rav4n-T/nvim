@@ -250,9 +250,9 @@
     "body": "<hr>",
     "description": "HTML - Defines a horizontal rule"
   },
-  "": {
-    "prefix": "",
-    "body": ["<>", "\t$1", "</html>"],
+  "empty element": {
+    "prefix": "<>",
+    "body": ["<>", "\t$1", "</>"],
     "description": "HTML - Defines an  document"
   },
   "5": {

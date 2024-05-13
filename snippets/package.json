@@ -53,22 +53,17 @@
       },
       {
         "language": [
-          "javascriptreact"
-        ],
-        "path": "./javascript/solidjs.json"
-      },
-      {
-        "language": [
-          "typescriptreact"
-        ],
-        "path": "./javascript/solidjs-ts.json"
-      },
-      {
-        "language": [
           "javascript",
           "javascriptreact"
         ],
         "path": "./javascript/react.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript/react-ts.json"
       },
       {
         "language": [

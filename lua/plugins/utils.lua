@@ -111,18 +111,30 @@ return {
 						expander_expanded = "",
 						expander_highlight = "NeoTreeExpander",
 					},
+					modified = {
+						symbol = "󰣕 ",
+						highlight = "NeoTreeModified",
+					},
 					name = {
 						trailing_slash = false,
 						use_git_status_colors = false,
 						highlight = "NeoTreeFileName",
 					},
+					diagnostics = {
+						symbols = {
+							error = " ",
+							warn = " ",
+							hint = " ",
+							info = " ",
+						},
+					},
 					git_status = {
 						symbols = {
 							-- Change type
-							added = "✚",
-							deleted = "✖",
-							modified = "",
-							renamed = "󰁕",
+							added = " ",
+							modified = " ",
+							removed = " ",
+							deleted = "󰆴 ",
 							-- Status type
 							untracked = "",
 							ignored = "",

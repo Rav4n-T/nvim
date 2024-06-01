@@ -54,8 +54,6 @@ return {
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
 		config = true,
 	},
-
-	-- { "echasnovski/mini.pairs", event = "InsertEnter", version = false, config = true },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -96,8 +94,6 @@ return {
 		-- 	})
 		-- end,
 	},
-
-	-- { "echasnovski/mini.surround", event = "InsertEnter", version = false, config = true },
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features

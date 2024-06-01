@@ -124,6 +124,8 @@ return {
 				-- 		},
 				-- 	},
 				-- },
+				gopls = {},
+				-- tsserver = {},
 				tailwindcss = {},
 				-- jsonls = {},
 				-- pyright = {},

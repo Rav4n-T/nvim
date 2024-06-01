@@ -1,7 +1,6 @@
 local wk = require("which-key")
 local utils = require("utils")
 
-local create_command = vim.api.nvim_create_user_command
 local add_command = vim.api.nvim_create_autocmd
 local add_augroup = vim.api.nvim_create_augroup
 local group = add_augroup("stay_centered", { clear = true })
@@ -121,13 +120,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto remove unused imports and sort imports with buferr write (typescript-tools)
-add_command("BufWritePre", {
-	pattern = { "*.js", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.mts" },
-	callback = function()
-		vim.cmd("TSToolsAddMissingImports sync")
-		vim.cmd("TSToolsOrganizeImports sync")
-	end,
-})
+--add_command("BufWritePre", {
+--	pattern = { "*.js", "*.mjs", "*.jsx", "*.ts", "*.tsx", "*.mts" },
+--	callback = function()
+--		vim.cmd("TSToolsAddMissingImports sync")
+--		vim.cmd("TSToolsOrganizeImports sync")
+--	end,
+--})
 
 -- Change fcitx5 status on insertLeave
 add_command("InsertLeave", {

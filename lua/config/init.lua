@@ -20,9 +20,7 @@ function M.setup()
 		require("config.neovide")
 	end
 	-- colorschema
-	-- vim.cmd.colorscheme("gruvbox")
-	-- vim.cmd.colorscheme("everforest")
-	vim.cmd.colorscheme("catppuccin")
+	vim.cmd.colorscheme("catppuccin-macchiato")
 	-- override_ui_input
 	-- require("ui.input").override_ui_input()
 end

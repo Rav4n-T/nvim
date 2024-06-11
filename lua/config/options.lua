@@ -40,7 +40,7 @@ M.options = {
 		autoread = true,
 		autowrite = true,
 		-- hide * markup for bold and italic
-		conceallevel = 0,
+		conceallevel = 2,
 		-- disable line wrap
 		wrap = false,
 		-- set file cache

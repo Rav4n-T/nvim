@@ -88,6 +88,7 @@ local M = {
 						codeium = "(Ai)",
 						path = "(Pth)",
 						buffer = "(Buf)",
+						neorg = "(Org)",
 					})[entry.source.name]
 					return vim_item
 				end,
@@ -140,6 +141,7 @@ local M = {
 					priority = 7,
 					group_index = 1,
 				},
+				{ name = "neorg" },
 			}),
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp.mapping(function(fallback)

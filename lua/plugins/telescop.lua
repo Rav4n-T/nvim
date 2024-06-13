@@ -108,13 +108,4 @@ return {
 			map("n", "<leader>gs", "<cmd>Telescope git_stash<cr>", { desc = "List git stash items" })
 		end,
 	},
-	{
-		"danielvolchek/tailiscope.nvim",
-		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
-		config = function()
-			require("telescope").load_extension("tailiscope")
-			local map = vim.keymap.set
-			map("n", "<leader>lh", "<cmd>Telescope tailiscope<cr>", { desc = "List tailwindcss utils" })
-		end,
-	},
 }

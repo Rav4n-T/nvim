@@ -196,25 +196,25 @@ return {
 			},
 		},
 	},
-	{
-		"nguyenvukhang/nvim-toggler",
-		event = "VeryLazy",
-		config = function()
-			local map = vim.keymap.set
-			local toggle = require("nvim-toggler")
-
-			map("n", "<leader>at", toggle.toggle, { desc = "Invert current word", remap = true, silent = true })
-
-			toggle.setup({
-				-- your own inverses
-				inverses = {
-					["vim"] = "emacs",
-					["1"] = "0",
-					["dark"] = "light",
-				},
-				-- removes the default <leader>i keymap
-				remove_default_keybinds = true,
-			})
-		end,
-	},
+	-- {
+	-- 	"nguyenvukhang/nvim-toggler",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		local map = vim.keymap.set
+	-- 		local toggle = require("nvim-toggler")
+	--
+	-- 		map("n", "<leader>at", toggle.toggle, { desc = "Invert current word", remap = true, silent = true })
+	--
+	-- 		toggle.setup({
+	-- 			-- your own inverses
+	-- 			inverses = {
+	-- 				["vim"] = "emacs",
+	-- 				["1"] = "0",
+	-- 				["dark"] = "light",
+	-- 			},
+	-- 			-- removes the default <leader>i keymap
+	-- 			remove_default_keybinds = true,
+	-- 		})
+	-- 	end,
+	-- },
 }

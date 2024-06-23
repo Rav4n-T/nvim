@@ -62,7 +62,7 @@ M.setLspKeymap = function()
 			)
 			map(
 				"n",
-				"<C-k>",
+				"<C-f>",
 				vim.lsp.buf.signature_help,
 				{ desc = "show signature help doc", buffer = ev.buf, remap = true, silent = true }
 			)
@@ -121,7 +121,7 @@ M.AttachFn = function(_, bufnr)
 				border = "none",
 				source = "always",
 				prefix = " ",
-				scope = "line",
+				scope = "cursor",
 			}
 			vim.diagnostic.open_float(nil, hover_opts)
 		end,

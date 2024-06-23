@@ -10,6 +10,14 @@ local M = {
 		-- { "ray-x/cmp-treesitter" },
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "kola-web/cmp-path" },
+		{
+			"MattiasMTS/cmp-dbee",
+			dependencies = {
+				{ "kndndrj/nvim-dbee" },
+			},
+			ft = "sql", -- optional but good to have
+			opts = {}, -- needed
+		},
 	},
 	opts = {},
 	config = function(_, _)
@@ -86,10 +94,11 @@ local M = {
 						luasnip = "(Snp)",
 						nvim_lua = "(Lua)",
 						codeium = "(Ci)",
-						fittencode = "(FC)",
+						-- fittencode = "(FC)",
 						path = "(Pth)",
 						buffer = "(Buf)",
 						neorg = "(Org)",
+						dbee = "(DB)",
 					})[entry.source.name]
 					return vim_item
 				end,
@@ -131,9 +140,15 @@ local M = {
 					priority = 9,
 					group_index = 1,
 				},
+				{
+					name = "cmp-dbee",
+					keyword_pattern = [[\k\+]],
+					priority = 9,
+					group_index = 1,
+				},
 				{ name = "luasnip", priority = 9, group_index = 1 },
 				{ name = "codeium", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
-				{ name = "fittencode", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
+				-- { name = "fittencode", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
 				{ name = "buffer", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
 				-- { name = "treesitter", priority = 7, group_index = 1 },
 				{ name = "nvim_lua", priority = 8, group_index = 1 },

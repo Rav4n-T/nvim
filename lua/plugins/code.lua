@@ -1,13 +1,72 @@
 return {
 	{
-		"Exafunction/codeium.nvim",
-		event = "InsertEnter",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
+		"luozhiya/fittencode.nvim",
 		config = function()
-			require("codeium").setup({})
+			require("fittencode").setup({
+				inline_completion = {
+					-- Enable inline code completion.
+					---@type boolean
+					enable = false,
+					-- Disable auto completion when the cursor is within the line.
+					---@type boolean
+					disable_completion_within_the_line = true,
+					-- Disable auto completion when pressing Backspace or Delete.
+					---@type boolean
+					disable_completion_when_delete = true,
+					-- Auto triggering completion
+					---@type boolean
+					auto_triggering_completion = false,
+					accept_mode = "commit",
+				},
+				chat = {
+					-- Highlight the conversation in the chat window at the current cursor position.
+					highlight_conversation_at_cursor = false,
+					-- Style
+					-- Available options:
+					-- * `sidebar` (Siderbar style, also default)
+					-- * `floating` (Floating style)
+					style = "floating",
+					floating = {
+						-- Border style of the floating window.
+						-- Same border values as `nvim_open_win`.
+						border = "rounded",
+						-- Size of the floating window.
+						-- <= 1: percentage of the screen size
+						-- >  1: number of lines/columns
+						size = { width = 0.8, height = 0.8 },
+					},
+				},
+				use_default_keymaps = false,
+				keymaps = {
+					chat = {
+						["q"] = "close",
+						["[c"] = "goto_previous_conversation",
+						["]c"] = "goto_next_conversation",
+						["c"] = "copy_conversation",
+						["C"] = "copy_all_conversations",
+						["d"] = "delete_conversation",
+						["D"] = "delete_all_conversations",
+					},
+				},
+				source_completion = {
+					enable = true,
+					engine = "cmp",
+					trigger_chars = function()
+						local chars = {}
+						if #chars == 0 then
+							for i = 33, 126 do
+								chars[#chars + 1] = string.char(i)
+							end
+							chars[#chars + 1] = "\n"
+							chars[#chars + 1] = "\r"
+							chars[#chars + 1] = "\r\n"
+							chars[#chars + 1] = "\t"
+						end
+						return chars
+					end,
+				},
+				completion_mode = "source",
+			})
 		end,
 	},
 	{

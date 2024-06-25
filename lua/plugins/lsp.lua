@@ -49,7 +49,7 @@ return {
 			diagnostics = {
 				underline = false,
 				update_in_insert = false,
-				virtual_text = false,
+				virtual_text = true,
 				float = {
 					source = "always",
 				},
@@ -161,7 +161,7 @@ return {
 			local function setup(server)
 				local server_opts = vim.tbl_deep_extend("force", {
 					capabilities = vim.deepcopy(capabilities),
-					on_attach = lspUtils.AttachFn,
+					-- on_attach = lspUtils.AttachFn,
 				}, servers[server] or {})
 				require("lspconfig")[server].setup(server_opts)
 			end

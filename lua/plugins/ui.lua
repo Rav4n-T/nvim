@@ -58,7 +58,7 @@ return {
 	},
 	{
 		"echasnovski/mini.indentscope",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufEnter" },
 		opts = {
 			symbol = "╎",
 			options = { try_as_border = true },
@@ -78,7 +78,7 @@ return {
 	},
 	{
 		"catppuccin/nvim",
-		event = "VeryLazy",
+		event = "BufEnter",
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
@@ -103,8 +103,8 @@ return {
 	},
 	{
 		"neanias/everforest-nvim",
-		version = false,
-		lazy = false,
+		event = "BufEnter",
+		lazy = true,
 		priority = 1000, -- make sure to load this before all the other start plugins
 		-- Optional; default configuration will be used if setup isn't called.
 		config = function()

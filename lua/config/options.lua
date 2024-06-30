@@ -6,7 +6,7 @@ M.options = {
 		background = "dark",
 		number = true, --Enable number line
 		-- signcolumn = "number", --Set signcolum line in number line
-		-- guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
+		guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1", --Set cursor type
 		cursorline = true,
 		clipboard = "unnamedplus", --Enable system clipboard
 		-- set status line  never show
@@ -56,7 +56,6 @@ M.options = {
 		splitbelow = true,
 		-- nvim 0.9 new options
 		splitkeep = "screen",
-		-- shortmess
 		-- windows shell
 		-- shell = "powershell",
 	},

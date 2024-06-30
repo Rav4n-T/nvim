@@ -142,83 +142,83 @@ return {
 			})
 		end,
 	},
-	{
-		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-		dependencies = {
-			"meuter/lualine-so-fancy.nvim",
-		},
-		enabled = true,
-		lazy = false,
-		config = function()
-			-- local icons = require("config.icons")
-			require("lualine").setup({
-				options = {
-					theme = "auto",
-					globalstatus = true,
-					icons_enabled = true,
-					component_separators = { left = "│", right = "│" },
-					-- component_separators = { left = "|", right = "|" },
-					section_separators = { left = "", right = "" },
-					disabled_filetypes = {
-						statusline = {
-							"alfa-nvim",
-							"help",
-							"neo-tree",
-							"Trouble",
-							"spectre_panel",
-							"toggleterm",
-						},
-						winbar = {},
-					},
-				},
-				sections = {
-					lualine_a = {},
-					lualine_b = {
-						"fancy_branch",
-					},
-					lualine_c = {
-						"fancy_diff",
-						"fancy_lsp_servers",
-						{
-							"fancy_diagnostics",
-							sources = { "nvim_lsp" },
-							symbols = { error = " ", warn = " ", info = " " },
-						},
-						{ "fancy_searchcount" },
-					},
-					lualine_x = {
-						{
-							"filename",
-							path = 0, -- 2 for full path
-							symbols = {
-								modified = "  ",
-								readonly = "  ",
-								unnamed = "  ",
-							},
-						},
-						"location",
-						"progress",
-					},
-					lualine_y = {},
-					lualine_z = {},
-				},
-				inactive_sections = {
-					lualine_a = {},
-					lualine_b = {},
-					lualine_c = {},
-					lualine_x = {},
-					lualine_y = {},
-					lualine_z = {},
-				},
-				tabline = {},
-				-- extensions = { "neo-tree", "lazy", "mason", "man", "nvim-dap-ui", "quickfix" },
-			})
-		end,
-	},
+	-- {
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- 	dependencies = {
+	-- 		"meuter/lualine-so-fancy.nvim",
+	-- 	},
+	-- 	enabled = true,
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		-- local icons = require("config.icons")
+	-- 		require("lualine").setup({
+	-- 			options = {
+	-- 				theme = "auto",
+	-- 				globalstatus = true,
+	-- 				icons_enabled = true,
+	-- 				component_separators = { left = "│", right = "│" },
+	-- 				-- component_separators = { left = "|", right = "|" },
+	-- 				section_separators = { left = "", right = "" },
+	-- 				disabled_filetypes = {
+	-- 					statusline = {
+	-- 						"alfa-nvim",
+	-- 						"help",
+	-- 						"neo-tree",
+	-- 						"Trouble",
+	-- 						"spectre_panel",
+	-- 						"toggleterm",
+	-- 					},
+	-- 					winbar = {},
+	-- 				},
+	-- 			},
+	-- 			sections = {
+	-- 				lualine_a = {},
+	-- 				lualine_b = {
+	-- 					"fancy_branch",
+	-- 				},
+	-- 				lualine_c = {
+	-- 					"fancy_diff",
+	-- 					"fancy_lsp_servers",
+	-- 					{
+	-- 						"fancy_diagnostics",
+	-- 						sources = { "nvim_lsp" },
+	-- 						symbols = { error = " ", warn = " ", info = " " },
+	-- 					},
+	-- 					{ "fancy_searchcount" },
+	-- 				},
+	-- 				lualine_x = {
+	-- 					{
+	-- 						"filename",
+	-- 						path = 0, -- 2 for full path
+	-- 						symbols = {
+	-- 							modified = "  ",
+	-- 							readonly = "  ",
+	-- 							unnamed = "  ",
+	-- 						},
+	-- 					},
+	-- 					"location",
+	-- 					"progress",
+	-- 				},
+	-- 				lualine_y = {},
+	-- 				lualine_z = {},
+	-- 			},
+	-- 			inactive_sections = {
+	-- 				lualine_a = {},
+	-- 				lualine_b = {},
+	-- 				lualine_c = {},
+	-- 				lualine_x = {},
+	-- 				lualine_y = {},
+	-- 				lualine_z = {},
+	-- 			},
+	-- 			tabline = {},
+	-- 			-- extensions = { "neo-tree", "lazy", "mason", "man", "nvim-dap-ui", "quickfix" },
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"lewis6991/gitsigns.nvim",
-		event = "VeryLazy",
+		event = "BufEnter",
 		opts = {
 			signs = {
 				add = { text = "┃" },

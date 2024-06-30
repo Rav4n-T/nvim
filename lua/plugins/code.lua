@@ -1,6 +1,7 @@
 return {
 	{
 		"luozhiya/fittencode.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
 		config = function()
 			require("fittencode").setup({
 				inline_completion = {

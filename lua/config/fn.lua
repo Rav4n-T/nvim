@@ -18,11 +18,11 @@ add_command("TextYankPost", {
 })
 
 -- Change cursor shape when neovim exit
-add_command("ExitPre", {
-	group = vim.api.nvim_create_augroup("Exit", { clear = true }),
-	command = "set guicursor=a:ver90",
-	desc = "Set cursor back to beam when leaving Neovim.",
-})
+-- add_command("ExitPre", {
+-- 	group = vim.api.nvim_create_augroup("Exit", { clear = true }),
+-- 	command = "set guicursor=a:ver90",
+-- 	desc = "Set cursor back to beam when leaving Neovim.",
+-- })
 
 -- stay current lin on screent center
 -- add_command("CursorMovedI", {

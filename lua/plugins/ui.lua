@@ -78,7 +78,9 @@ return {
 	},
 	{
 		"catppuccin/nvim",
-		event = "BufEnter",
+		keys = {
+			{ "<leader>lc", "<cmd>Telescope colorscheme<cr>", desc = "List colorscheme" },
+		},
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
@@ -209,6 +211,14 @@ return {
 	-- },
 	{
 		"lewis6991/gitsigns.nvim",
+		cond = function()
+			local git_dir = vim.fn.finddir(".git", vim.fn.getcwd() .. ";")
+			if git_dir ~= "" then
+				return true
+			else
+				return false
+			end
+		end,
 		event = "BufEnter",
 		opts = {
 			signs = {

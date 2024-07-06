@@ -4,7 +4,7 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
-		event = { "InsertEnter" },
+		ft = { "go" },
 		build = function()
 			-- Install tries to automatically detect the install method.
 			-- if it fails, try calling it with one of these parameters:

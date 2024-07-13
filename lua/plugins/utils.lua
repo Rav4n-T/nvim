@@ -36,33 +36,29 @@ return {
 		"folke/which-key.nvim",
 		event = "VeryLazy",
 		opts = {
-			plugins = { spelling = true },
-			defaults = {
+			---@type false | "classic" | "modern" | "helix"
+			preset = "helix",
+			spec = {
 				mode = { "n", "v" },
-				["g"] = { name = "+goto" },
-				["s"] = { name = "+surround" },
-				["z"] = { name = "+fold" },
-				["]"] = { name = "+next" },
-				["["] = { name = "+prev" },
-				["<leader>a"] = { name = "+Action" },
-				["<leader>b"] = { name = "+Buffer" },
-				["<leader>d"] = { name = "+Debug" },
-				["<leader>f"] = { name = "+Find" },
-				["<leader>g"] = { name = "+Git" },
-				["<leader>l"] = { name = "+List" },
-				["<leader>n"] = { name = "+Notify" },
-				["<leader>p"] = { name = "+Picker" },
-				["<leader>w"] = { name = "+Lsp Workspace" },
+				{ "g", group = "goto" },
+				{ "s", group = "surround" },
+				{ "z", group = "fold" },
+				{ "]", group = "next" },
+				{ "", group = "prev" },
+				{ "<leader>a", group = "Action" },
+				{ "<leader>b", group = "Buffer" },
+				{ "<leader>d", group = "Debug" },
+				{ "<leader>f", group = "Find" },
+				{ "<leader>g", group = "Git" },
+				{ "<leader>l", group = "List" },
+				{ "<leader>n", group = "Notify" },
+				{ "<leader>p", group = "Picker" },
+				{ "<leader>w", group = "Lsp Workspace" },
 			},
 		},
 		init = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-		end,
-		config = function(_, opts)
-			local wk = require("which-key")
-			wk.setup(opts)
-			wk.register(opts.defaults)
 		end,
 	},
 	{

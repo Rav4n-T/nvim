@@ -63,7 +63,7 @@ add_command("BufEnter", {
 add_command("FileType", {
 	pattern = "c,cpp,python",
 	callback = function()
-		wk.register({
+		wk.add({
 			["<F5>"] = {
 				utils.runCode,
 				"Compilite or Run",

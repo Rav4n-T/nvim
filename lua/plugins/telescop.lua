@@ -15,6 +15,7 @@ return {
 				defaults = themes.get_dropdown({
 					file_ignore_patterns = { "node_modules", ".obsidian", ".terraform", "%.jpg", "%.png" },
 					scroll_strategy = "cycle",
+					preview = false,
 					mappings = {
 						i = {
 							["<C-q>"] = actions.close,
@@ -26,16 +27,9 @@ return {
 						results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
 						preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 					},
-					width = 0.8,
-					previewer = false,
+					width = 1,
 					prompt_title = false,
 				}),
-				-- layout_config = {
-				-- 	horizontal = {
-				-- 		preview_cutoff = 100,
-				-- 		preview_width = 0.5,
-				-- 	},
-				-- },
 				pickers = {
 					find_files = {
 						find_command = { "fd", "-tf" },
@@ -43,8 +37,12 @@ return {
 					buffers = {
 						initial_mode = "insert",
 					},
+					live_grep = {
+						preview = true,
+					},
 					grep_string = {
 						initial_mode = "normal",
+						preview = true,
 					},
 				},
 				extensions = {

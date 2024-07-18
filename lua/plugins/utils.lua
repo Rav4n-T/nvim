@@ -35,9 +35,13 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
+		keys = {
+			{ "<leader>", mode = { "n", "v" }, silent = true },
+		},
 		opts = {
 			---@type false | "classic" | "modern" | "helix"
-			preset = "helix",
+			preset = "classic",
+			delay = 200,
 			spec = {
 				mode = { "n", "v" },
 				{ "g", group = "goto" },

@@ -13,6 +13,7 @@ M.options = {
 		laststatus = 0,
 		-- set columns of context
 		sidescrolloff = 10,
+		textwidth = 80,
 		termguicolors = true,
 		-- set timeout
 		timeoutlen = 300,
@@ -42,7 +43,7 @@ M.options = {
 		-- hide * markup for bold and italic
 		conceallevel = 2,
 		-- disable line wrap
-		wrap = false,
+		wrap = true,
 		-- set file cache
 		updatetime = 200,
 		backup = true,

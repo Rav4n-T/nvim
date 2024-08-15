@@ -49,8 +49,8 @@ return {
 					project = {
 						theme = "dropdown",
 						base_dirs = {
-							{ "~/Workspaces" },
-							{ "~/Projectes" },
+							{ "~/Desktop/Workspaces" },
+							{ "~/Desktop/Projectes" },
 						},
 						hidden_files = true,
 						sync_with_nvim_tree = true,

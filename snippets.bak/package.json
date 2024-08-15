@@ -9,9 +9,13 @@
         "language": [
           "markdown",
           "tex",
-          "global"
+          "global",
         ],
         "path": "./global.json"
+      },
+      {
+        "language": "norg",
+        "path": "./norg.json"
       },
       {
         "language": [

@@ -1,0 +1,23 @@
+extends javascript
+extends html
+
+snippet nrf "New React Function"
+	const ${1:ComponentName} = (${2:props}) => {
+		${4:state}
+		return (
+			<>
+				${3:Some text}
+			</>
+		);
+	};
+	export default ${1:ComponentName}
+
+snippet nrdf "New React Function"
+	export default function ${1:ComponentName} (${2:props}){
+		${4:state}
+		return (
+			<>
+				${3:Some text}
+			</>
+		);
+	};

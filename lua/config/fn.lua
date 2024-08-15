@@ -139,4 +139,4 @@ vim.api.nvim_create_autocmd("FileType", {
 -- })
 
 -- Windows IM Switch
-require("utils.im")
+-- require("utils.im")

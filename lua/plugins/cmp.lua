@@ -2,13 +2,13 @@ local M = {
 	"hrsh7th/nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
-		-- { "L3MON4D3/LuaSnip" },
+		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 		{ "hrsh7th/cmp-nvim-lsp" },
-		-- { "saadparwaiz1/cmp_luasnip", version = "v2.*", build = "make install_jsregexp" },
-    {"dcampos/nvim-snippy"},
-    {"dcampos/cmp-snippy"},
+		{ "saadparwaiz1/cmp_luasnip" },
+		-- { "dcampos/nvim-snippy" },
+		-- { "dcampos/cmp-snippy" },
 		{ "hrsh7th/cmp-cmdline" },
-		{ "hrsh7th/cmp-buffer" },
+		-- { "hrsh7th/cmp-buffer" },
 		-- { "ray-x/cmp-treesitter" },
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "kola-web/cmp-path" },
@@ -23,17 +23,18 @@ local M = {
 	},
 	opts = {},
 	config = function(_, _)
-		-- local luasnip = require("luasnip")
-    local snippy = require("snippy")
+		local luasnip = require("luasnip")
+		-- local snippy = require("snippy")
 		local cmp = require("cmp")
 		local kind_icons = require("config.options").icons.kind_icons
 
-		-- require("luasnip").setup({
-		-- 	region_check_events = "CursorHold,InsertLeave",
-		-- 	delete_check_events = "TextChanged,InsertEnter",
-		-- })
+		require("luasnip").setup({
+			region_check_events = "CursorHold,InsertLeave",
+			delete_check_events = "TextChanged,InsertEnter",
+		})
 		-- require("luasnip.loaders.from_vscode").lazy_load()
 		-- require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
+		require("luasnip.loaders.from_snipmate").lazy_load()
 
 		-- gray
 		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#D5C4A1" })
@@ -94,8 +95,8 @@ local M = {
 					-- Source
 					vim_item.menu = ({
 						nvim_lsp = "(Lsp)",
-						-- luasnip = "(Snp)",
-						snippy = "(Snp)",
+						luasnip = "(Snp)",
+						-- snippy = "(Snp)",
 						nvim_lua = "(Lua)",
 						fittencode = "(FC)",
 						path = "(Pth)",
@@ -131,16 +132,16 @@ local M = {
 			experimental = {
 				ghost_text = true, -- this feature conflict with copilot.vim's preview.
 			},
-			snippet = {
-				expand = function(args)
-					snippy.expand_snippet(args.body)
-				end,
-			},
 			-- snippet = {
 			-- 	expand = function(args)
-			-- 		luasnip.lsp_expand(args.body)
+			-- 		snippy.expand_snippet(args.body)
 			-- 	end,
 			-- },
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			sources = cmp.config.sources({
 				{
 					name = "nvim_lsp",
@@ -154,8 +155,8 @@ local M = {
 					priority = 9,
 					group_index = 1,
 				},
-				-- { name = "luasnip", priority = 9, group_index = 1 },
-				{ name = "snippy", priority = 9, group_index = 1 },
+				{ name = "luasnip", priority = 9, group_index = 1 },
+				-- { name = "snippy", priority = 9, group_index = 1 },
 				{ name = "fittencode", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
 				{ name = "buffer", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
 				-- { name = "treesitter", priority = 7, group_index = 1 },
@@ -172,10 +173,10 @@ local M = {
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
-          elseif snippy.can_expand_or_advance() then
-            snippy.expand_or_advance()
-					-- elseif luasnip.expand_or_locally_jumpable() then
-					-- 	luasnip.expand_or_jump()
+					-- elseif snippy.can_expand_or_advance() then
+					-- 	snippy.expand_or_advance()
+					elseif luasnip.expand_or_locally_jumpable() then
+						luasnip.expand_or_jump()
 					-- elseif utils.has_words_before() then
 					-- 	cmp.complete()
 					else
@@ -188,10 +189,10 @@ local M = {
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-          elseif snippy.can_jump(-1) then
-            snippy.preious()
-					-- elseif luasnip.jumpable(-1) then
-					-- 	luasnip.jump(-1)
+					-- elseif snippy.can_jump(-1) then
+					-- 	snippy.preious()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
 					else
 						fallback()
 					end

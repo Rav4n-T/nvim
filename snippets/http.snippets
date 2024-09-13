@@ -1,0 +1,17 @@
+snippet get "GET"
+	###
+	# ${1:desriptive}
+	GET {{${2:base_url}}}/${3:path}
+	accept: application/json
+
+snippet post "POST"
+	###
+	# ${1:desriptive}
+	POST {{${2:base_url}}}/${3:path}
+	Content-Type: application/json
+	accept: application/json
+	Authorization: Bearer {{token}}
+
+	{
+		${4:data}
+	}

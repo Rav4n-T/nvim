@@ -53,6 +53,7 @@ return {
 				{ "<leader>b", group = "Buffer" },
 				{ "<leader>d", group = "Debug" },
 				{ "<leader>f", group = "Find" },
+				{ "<leader>h", group = "Kulala" },
 				{ "<leader>g", group = "Git" },
 				{ "<leader>l", group = "List" },
 				{ "<leader>n", group = "Notify" },

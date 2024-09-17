@@ -15,14 +15,14 @@ M.setLspKeymap = function()
 				"n",
 				"gd",
 				-- vim.lsp.buf.definition,
-				"<cmd>Telescope lsp_definitions<cr>",
+				"<cmd>FzfLua lsp_definitions<cr>",
 				{ desc = "go to definition", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"gt",
 				-- vim.lsp.buf.type_definition,
-				"<cmd>Telescope lsp_type_definitions<cr>",
+				"<cmd>FzfLua lsp_type_definitions<cr>",
 				{ desc = "go to type definition", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
@@ -35,7 +35,7 @@ M.setLspKeymap = function()
 			map(
 				"n",
 				"gi",
-				"<cmd>Telescope lsp_implementations<cr>",
+				"<cmd>FzfLua lsp_implementations<cr>",
 				-- vim.lsp.buf.implementation,
 				{ desc = "go to implementation", buffer = ev.buf, remap = true, silent = true }
 			)
@@ -43,21 +43,21 @@ M.setLspKeymap = function()
 				"n",
 				"gr",
 				-- vim.lsp.buf.references,
-				"<cmd>Telescope lsp_references<cr>",
+				"<cmd>FzfLua lsp_references<cr>",
 				{ desc = "go to references", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"gI",
 				-- vim.lsp.buf.references,
-				"<cmd>Telescope lsp_incoming_calls<cr>",
+				"<cmd>FzfLua lsp_incoming_calls<cr>",
 				{ desc = "go to incoming calls", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(
 				"n",
 				"go",
 				-- vim.lsp.buf.references,
-				"<cmd>Telescope lsp_outgoing_calls<cr>",
+				"<cmd>FzfLua lsp_outgoing_calls<cr>",
 				{ desc = "go to outgoing calls", buffer = ev.buf, remap = true, silent = true }
 			)
 			map(

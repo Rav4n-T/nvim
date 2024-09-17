@@ -5,12 +5,7 @@ local M = {
 		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "saadparwaiz1/cmp_luasnip" },
-		-- { "dcampos/nvim-snippy" },
-		-- { "dcampos/cmp-snippy" },
-		{ "hrsh7th/cmp-cmdline" },
-		-- { "hrsh7th/cmp-buffer" },
-		-- { "ray-x/cmp-treesitter" },
-		{ "hrsh7th/cmp-nvim-lua" },
+		{ "hrsh7th/cmp-buffer" },
 		{ "kola-web/cmp-path" },
 		{
 			"MattiasMTS/cmp-dbee",
@@ -24,7 +19,6 @@ local M = {
 	opts = {},
 	config = function(_, _)
 		local luasnip = require("luasnip")
-		-- local snippy = require("snippy")
 		local cmp = require("cmp")
 		local kind_icons = require("config.options").icons.kind_icons
 
@@ -131,11 +125,6 @@ local M = {
 			experimental = {
 				ghost_text = true, -- this feature conflict with copilot.vim's preview.
 			},
-			-- snippet = {
-			-- 	expand = function(args)
-			-- 		snippy.expand_snippet(args.body)
-			-- 	end,
-			-- },
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -150,16 +139,12 @@ local M = {
 				},
 				{
 					name = "cmp-dbee",
-					keyword_pattern = [[\k\+]],
 					priority = 9,
 					group_index = 1,
 				},
 				{ name = "luasnip", priority = 9, group_index = 1 },
-				-- { name = "snippy", priority = 9, group_index = 1 },
 				{ name = "fittencode", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
 				{ name = "buffer", keyword_pattern = [[\k\+]], priority = 7, group_index = 1 },
-				-- { name = "treesitter", priority = 7, group_index = 1 },
-				{ name = "nvim_lua", priority = 8, group_index = 1 },
 				{
 					name = "path",
 					keyword_pattern = [[\k\+]],
@@ -188,8 +173,6 @@ local M = {
 				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_prev_item()
-					-- elseif snippy.can_jump(-1) then
-					-- 	snippy.preious()
 					elseif luasnip.jumpable(-1) then
 						luasnip.jump(-1)
 					else

@@ -56,20 +56,22 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							Lua = {
-								diagnostics = {
-									disable = { "missing-fields" },
-								},
-								workspace = {
-									checkThirdParty = false,
-								},
-								completion = {
-									callSnippet = "Replace",
-								},
-								telemetry = {
-									enable = false,
-								},
+							runtime = {
+								version = "LuaJIT",
 							},
+							diagnostics = {
+								disable = { "missing-fields" },
+							},
+							workspace = {
+								library = vim.api.nvim_get_runtime_file("", true),
+								checkThirdParty = false,
+							},
+							-- completion = {
+							-- 	callSnippet = "Replace",
+							-- },
+							-- telemetry = {
+							-- 	enable = false,
+							-- },
 						},
 					},
 				},

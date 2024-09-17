@@ -130,12 +130,13 @@ end
 
 M.setFloatWindow = function()
 	local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-	function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	local custom_open_floating_preview = function(contents, syntax, opts, ...)
 		opts = opts or {}
 		opts.border = opts.border or "single"
 		opts.max_width = opts.max_width or 50
 		return orig_util_open_floating_preview(contents, syntax, opts, ...)
 	end
+	vim.lsp.util.open_floating_preview = custom_open_floating_preview
 end
 
 return M

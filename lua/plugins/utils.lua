@@ -123,6 +123,8 @@ return {
 						["<space>"] = "none",
 						["l"] = "open",
 						["L"] = "focus_preview",
+						["s"] = "open_split",
+						["S"] = "open_vsplit",
 					},
 				},
 				default_component_configs = {

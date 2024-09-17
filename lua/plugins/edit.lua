@@ -10,46 +10,7 @@ return {
 			local configs = require("nvim-treesitter.configs")
 			---@diagnostic disable-next-line missing-fields
 			configs.setup({
-				ensure_installed = {
-					"vim",
-					"vimdoc",
-					"query",
-					"lua",
-					"c",
-					"cpp",
-					"cmake",
-					"make",
-					"rust",
-					"go",
-					"python",
-					"javascript",
-					"typescript",
-					"tsx",
-					"vue",
-					"html",
-					"css",
-					"scss",
-					"styled",
-					"json",
-					"jsonc",
-					"yaml",
-					"regex",
-					"markdown",
-					"markdown_inline",
-					"csv",
-					"proto",
-					"hurl",
-					"sql",
-					"fish",
-					"ssh_config",
-					"norg",
-					"kdl",
-					"toml",
-					"ron",
-					"diff",
-					"gitignore",
-				},
-				sync_install = true,
+        ensure_installed = "all",
 				highlight = {
 					enable = true,
 					disable = function(_, buf) -- first args is lang
@@ -60,8 +21,9 @@ return {
 						end
 					end,
 				},
-				indent = { enable = false },
-				autotag = { enable = true },
+				indent = {
+          enable = true
+        },
 			})
 		end,
 	},

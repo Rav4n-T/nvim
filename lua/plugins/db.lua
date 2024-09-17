@@ -4,15 +4,26 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
-		ft = { "go" },
+		-- ft = { "go" },
 		build = function()
-			-- Install tries to automatically detect the install method.
-			-- if it fails, try calling it with one of these parameters:
-			--    "curl", "wget", "bitsadmin", "go"
 			require("dbee").install()
 		end,
 		config = function()
-			require("dbee").setup(--[[optional config]])
+			local dbee = require("dbee")
+			local map = vim.keymap.set
+
+			map("n", "<leader>bb", dbee.open, { desc = "Open Dbee" })
+			map("n", "<leader>bc", dbee.close, { desc = "Close Dbee" })
+			map("n", "<leader>bt", dbee.toggle, { desc = "Toggle Dbee" })
+
+			dbee.setup({
+				editor = {
+					mappings = {
+						{ key = "<leader>be", mode = "n", action = "run_file", desc = "dbee run selection" },
+						{ key = "<leader>be", mode = "v", action = "run_selection", desc = "dbee run all file" },
+					},
+				},
+			})
 		end,
 	},
 }

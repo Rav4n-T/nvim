@@ -1,13 +1,11 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			local map = vim.keymap.set
 			local fzflua = require("fzf-lua")
 			local actions = fzflua.actions
-			-- calling `setup` is optional for customization
 			fzflua.setup({
 				actions = {
 					files = {

@@ -9,11 +9,6 @@ return {
 			debug = true,
 		},
 		config = function(_, opts)
-			vim.filetype.add({
-				extension = {
-					["http"] = "http",
-				},
-			})
 			local map = vim.keymap.set
 			local kulala = require("kulala")
 			kulala.setup(opts)

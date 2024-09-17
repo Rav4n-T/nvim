@@ -1,37 +1,4 @@
 return {
-	-- {
-	-- 	"rcarriga/nvim-notify",
-	-- 	event = "VeryLazy",
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>nx",
-	-- 			function()
-	-- 				require("notify").dismiss({ silent = true, pending = true })
-	-- 			end,
-	-- 			desc = "Dismiss All Notifications",
-	-- 		},
-	-- 	},
-	-- 	opts = {
-	-- 		stages = "static",
-	-- 		timeout = 3000,
-	-- 		max_height = function()
-	-- 			return math.floor(vim.o.lines * 0.75)
-	-- 		end,
-	-- 		max_width = function()
-	-- 			return math.floor(vim.o.columns * 0.75)
-	-- 		end,
-	-- 		on_open = function(win)
-	-- 			vim.api.nvim_win_set_config(win, { zindex = 100 })
-	-- 		end,
-	-- 	},
-	-- 	init = function()
-	-- 		local utils = require("utils")
-	-- 		-- when noice is not enabled, install notify on VeryLazy
-	-- 		utils.on_very_lazy(function()
-	-- 			vim.notify = require("notify")
-	-- 		end)
-	-- 	end,
-	-- },
 	{
 		"j-hui/fidget.nvim",
 		opts = {
@@ -70,7 +37,7 @@ return {
 				{ "]", group = "next" },
 				{ "", group = "prev" },
 				{ "<leader>a", group = "Action" },
-				{ "<leader>b", group = "Buffer" },
+				{ "<leader>b", group = "Buffer or dbee" },
 				{ "<leader>d", group = "Debug" },
 				{ "<leader>f", group = "Find" },
 				{ "<leader>h", group = "Kulala" },
@@ -170,18 +137,6 @@ return {
 			})
 		end,
 	},
-	-- Move
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {
-			modes = {
-				char = {
-					jump_labels = true,
-				},
-			},
-		},
-	},
 	{
 		"ethanholz/nvim-lastplace",
 		event = "BufRead",
@@ -220,15 +175,6 @@ return {
 				virtual_symbol = "",
 				enable_named_colors = true,
 				enable_tailwind = true,
-				custom_colors = {
-					-- label property will be used as a pattern initially(string.gmatch), therefore you need to escape the special characters by yourself with %
-					-- { label = "%-%-theme%-font%-color", color = "#fff" },
-					-- { label = "%-%-theme%-background%-color", color = "#23222f" },
-					-- { label = "%-%-theme%-primary%-color", color = "#0f1219" },
-					-- { label = "%-%-theme%-secondary%-color", color = "#5a5d64" },
-					-- { label = "%-%-theme%-contrast%-color", color = "#fff" },
-					-- { label = "%-%-theme%-accent%-color", color = "#55678e" },
-				},
 			})
 		end,
 	},

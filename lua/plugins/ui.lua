@@ -1,62 +1,5 @@
 return {
 	{
-		"folke/noice.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-		event = "VeryLazy",
-		opts = {
-			lsp = {
-				progress = {
-					enabled = true,
-				},
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
-				},
-			},
-			routes = {
-				{
-					filter = {
-						event = "msg_show",
-						any = {
-							{ find = "%d+L, %d+B" },
-							{ find = "; after #%d+" },
-							{ find = "; before #%d+" },
-							{ find = "%d fewer lines" },
-							{ find = "%d more lines" },
-							{ find = "%d lines yanked" },
-						},
-					},
-					opts = { skip = true },
-				},
-				{
-					filter = {
-						event = "notify",
-						any = {
-							{ find = "No information available" },
-							{ find = "[Neo-tree]" },
-						},
-					},
-					opts = { skip = true },
-				},
-			},
-		},
-	    -- stylua: ignore
-	    keys = {
-	      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-	      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-	      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-	      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-	      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-	      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
-	      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
-	    }
-,
-	},
-	{
 		"echasnovski/mini.indentscope",
 		event = { "BufEnter" },
 		opts = {
@@ -67,7 +10,6 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
 				callback = function()
-					---@diagnostic disable-next-line missing-fields
 					vim.b.miniindentscope_disable = true
 				end,
 			})
@@ -78,9 +20,7 @@ return {
 	},
 	{
 		"catppuccin/nvim",
-		keys = {
-			{ "<leader>lc", "<cmd>Telescope colorscheme<cr>", desc = "List colorscheme" },
-		},
+		event = "VeryLazy",
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
@@ -123,8 +63,6 @@ return {
 				italics = true,
 				disable_italic_comments = false,
 				sign_column_background = "none",
-				---The contrast of line numbers, indent lines, etc. Options are `"high"` or
-				---`"low"` (default).
 				ui_contrast = "high",
 				dim_inactive_windows = false,
 				diagnostic_text_highlight = false,

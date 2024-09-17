@@ -52,19 +52,7 @@ return {
 				source_completion = {
 					enable = true,
 					engine = "cmp",
-					trigger_chars = function()
-						local chars = {}
-						if #chars == 0 then
-							for i = 33, 126 do
-								chars[#chars + 1] = string.char(i)
-							end
-							chars[#chars + 1] = "\n"
-							chars[#chars + 1] = "\r"
-							chars[#chars + 1] = "\r\n"
-							chars[#chars + 1] = "\t"
-						end
-						return chars
-					end,
+					trigger_chars = utils.fc_trigger_chars(),
 				},
 				completion_mode = "source",
 			})

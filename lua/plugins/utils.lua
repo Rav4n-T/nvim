@@ -1,36 +1,56 @@
 return {
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	event = "VeryLazy",
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>nx",
+	-- 			function()
+	-- 				require("notify").dismiss({ silent = true, pending = true })
+	-- 			end,
+	-- 			desc = "Dismiss All Notifications",
+	-- 		},
+	-- 	},
+	-- 	opts = {
+	-- 		stages = "static",
+	-- 		timeout = 3000,
+	-- 		max_height = function()
+	-- 			return math.floor(vim.o.lines * 0.75)
+	-- 		end,
+	-- 		max_width = function()
+	-- 			return math.floor(vim.o.columns * 0.75)
+	-- 		end,
+	-- 		on_open = function(win)
+	-- 			vim.api.nvim_win_set_config(win, { zindex = 100 })
+	-- 		end,
+	-- 	},
+	-- 	init = function()
+	-- 		local utils = require("utils")
+	-- 		-- when noice is not enabled, install notify on VeryLazy
+	-- 		utils.on_very_lazy(function()
+	-- 			vim.notify = require("notify")
+	-- 		end)
+	-- 	end,
+	-- },
 	{
-		"rcarriga/nvim-notify",
-		event = "VeryLazy",
-		keys = {
-			{
-				"<leader>nx",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Dismiss All Notifications",
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+			notification = {
+				override_vim_notify = true,
+				history_size = 128,
+
+				view = {
+					stack_upwards = false,
+				},
+
+				-- Option related to the notification window and buffer
+				window = {
+					winblend = 0, -- NOTE: it's winblend, not blend
+					align = "top",
+				},
 			},
 		},
-		opts = {
-			stages = "static",
-			timeout = 3000,
-			max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end,
-			on_open = function(win)
-				vim.api.nvim_win_set_config(win, { zindex = 100 })
-			end,
-		},
-		init = function()
-			local utils = require("utils")
-			-- when noice is not enabled, install notify on VeryLazy
-			utils.on_very_lazy(function()
-				vim.notify = require("notify")
-			end)
-		end,
 	},
 	{
 		"folke/which-key.nvim",

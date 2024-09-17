@@ -29,7 +29,7 @@ M.options = {
 		fileencodings = "ucs-bom,utf-8,gbk,cp936,gb18030,gb2312",
 		-- set fold
 		foldmethod = "expr",
-		foldenable = false,
+		foldenable = true,
 		foldexpr = "nvim_treesitter#foldexpr()",
 		foldlevel = 99,
 		-- set cancel highlight, ignore case

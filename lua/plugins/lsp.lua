@@ -3,10 +3,6 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{
-				"folke/neodev.nvim",
-				opts = {},
-			},
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
@@ -182,5 +178,18 @@ return {
 			})
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed, handlers = { setup } })
 		end,
+	},
+	{
+		"folke/lazydev.nvim",
+		cond = function()
+			local nvim_dir = vim.fn.finddir("snippets", vim.fn.getcwd() .. ";")
+			if nvim_dir ~= "" then
+				return true
+			else
+				return false
+			end
+		end,
+		ft = "lua", -- only load on lua files
+		opts = {},
 	},
 }

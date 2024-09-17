@@ -120,6 +120,7 @@ M.icons = {
 		Interface = " ",
 		Key = " ",
 		Keyword = " ",
+		keyword = " ",
 		Method = "󰊕 ",
 		Module = " ",
 		Namespace = "󰦮 ",
@@ -139,6 +140,8 @@ M.icons = {
 		Unit = " ",
 		Value = " ",
 		Variable = "󰀫 ",
+    schema = " ",
+    table = "󰠶 ",
 	},
 }
 

@@ -91,18 +91,17 @@ local M = {
 				format = function(entry, vim_item)
 					-- Kind icons
 					-- vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-					vim_item.kind = string.format(" %s", kind_icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
+					vim_item.kind = string.format(" %s", kind_icons[vim_item.kind] or vim_item.kind) -- This concatenates the icons with the name of the item kind
 					-- Source
 					vim_item.menu = ({
 						nvim_lsp = "(Lsp)",
 						luasnip = "(Snp)",
-						-- snippy = "(Snp)",
-						nvim_lua = "(Lua)",
+						-- nvim_lua = "(Lua)",
 						fittencode = "(FC)",
 						path = "(Pth)",
 						buffer = "(Buf)",
 						neorg = "(Org)",
-						dbee = "(DB)",
+						["cmp-dbee"] = "(DB)",
 					})[entry.source.name]
 					return vim_item
 				end,

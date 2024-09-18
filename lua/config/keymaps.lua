@@ -54,6 +54,11 @@ map("i", "?", "?<c-g>u")
 map("i", "/", "/<c-g>u")
 map("i", "\\", "\\<c-g>u")
 
+-- delete buffer
+local bufferUtil = require("utils.buffer")
+map("n", "<leader>bd", bufferUtil.del_current_buffer, { desc = "delete current buffer", remap = true, silent = true })
+map("n", "<leader>bo", bufferUtil.del_other_buffers, { desc = "delete other buffers", remap = true, silent = true })
+
 -- diagnostic
 local diagnostic_goto = function(next, severity)
 	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev

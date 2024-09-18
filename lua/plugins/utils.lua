@@ -63,25 +63,6 @@ return {
 		},
 	},
 	{
-		"kazhala/close-buffers.nvim",
-		event = "InsertLeave",
-		config = function()
-			local map = vim.keymap.set
-			map(
-				"n",
-				"<leader>bd",
-				"<cmd>BDelete this<cr>",
-				{ desc = "delete current buffer", remap = true, silent = true }
-			)
-			map(
-				"n",
-				"<leader>bo",
-				"<cmd>BDelete other<cr>",
-				{ desc = "delete other buffers", remap = true, silent = true }
-			)
-		end,
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		event = "BufRead",
 		config = function()

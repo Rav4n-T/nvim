@@ -77,3 +77,7 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- git
 local lazygit = require("utils.lazygit")
 map("n", "<leader>tg", lazygit.open, { desc = "open lazygit", remap = true, silent = true })
+
+-- term
+local term = require("utils.term")
+map("n", "<leader>to", term.open, { desc = "open term", remap = true, silent = true })

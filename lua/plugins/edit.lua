@@ -74,21 +74,21 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue" },
 		lazy = true,
-		opts = {
-			enable_autocmd = false,
-		},
-	},
-	{
-		"echasnovski/mini.comment",
-		event = "VeryLazy",
-		opts = {
-			options = {
-				custom_commentstring = function()
-					return require("ts_context_commentstring.internal").calculate_commentstring()
-						or vim.bo.commentstring
-				end,
-			},
-		},
+		config = function()
+			local tcc = require("ts_context_commentstring")
+			local tcc_internal = require("ts_context_commentstring.internal")
+
+			tcc.setup({
+				enable_autocmd = false,
+			})
+
+			local orig_get_option = vim.filetype.get_option
+			local custom_get_option = function(filetype, option)
+				return option == "commentstring" and tcc_internal.calculate_commentstring()
+					or orig_get_option(filetype, option)
+			end
+			vim.filetype.get_option = custom_get_option
+		end,
 	},
 
 	-- Format

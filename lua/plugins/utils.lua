@@ -1,24 +1,26 @@
 return {
 	{
 		"j-hui/fidget.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- options
-			notification = {
-				override_vim_notify = true,
-				history_size = 128,
+		config = function()
+			local fidget = require("fidget")
+			fidget.setup({
+				-- options
+				notification = {
+					override_vim_notify = true,
+					history_size = 128,
 
-				view = {
-					stack_upwards = false,
-				},
+					view = {
+						stack_upwards = false,
+					},
 
-				-- Option related to the notification window and buffer
-				window = {
-					winblend = 0, -- NOTE: it's winblend, not blend
-					align = "top",
+					-- Option related to the notification window and buffer
+					window = {
+						winblend = 0, -- NOTE: it's winblend, not blend
+						align = "top",
+					},
 				},
-			},
-		},
+			})
+		end,
 	},
 	{
 		"folke/which-key.nvim",

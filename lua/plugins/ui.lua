@@ -75,12 +75,13 @@ return {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPost", "BufNewFile" },
+		-- event = { "BufReadPost", "BufNewFile" },
+		event = "VeryLazy",
 		dependencies = {
 			"meuter/lualine-so-fancy.nvim",
 		},
 		enabled = true,
-		lazy = false,
+		-- lazy = false,
 		config = function()
 			-- local icons = require("config.icons")
 			require("lualine").setup({

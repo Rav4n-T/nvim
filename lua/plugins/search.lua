@@ -2,6 +2,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VeryLazy",
 		config = function()
 			local map = vim.keymap.set
 			local fzflua = require("fzf-lua")

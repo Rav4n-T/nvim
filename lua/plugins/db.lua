@@ -4,6 +4,7 @@ return {
 		dependencies = {
 			"MunifTanjim/nui.nvim",
 		},
+		event = "VeryLazy",
 		-- ft = { "go" },
 		build = function()
 			require("dbee").install()

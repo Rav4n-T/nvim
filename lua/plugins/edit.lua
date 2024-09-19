@@ -147,40 +147,11 @@ return {
 		end,
 	},
 	{
-		"smoka7/multicursors.nvim",
-		dependencies = {
-			"smoka7/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n" },
-				"<C-n>",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
-		},
+		"mg979/vim-visual-multi",
+		branch = "master",
+		event = "VeryLazy",
+		init = function()
+			vim.g.VM_set_statusline = 0
+		end,
 	},
-	-- {
-	-- 	"nguyenvukhang/nvim-toggler",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		local map = vim.keymap.set
-	-- 		local toggle = require("nvim-toggler")
-	--
-	-- 		map("n", "<leader>at", toggle.toggle, { desc = "Invert current word", remap = true, silent = true })
-	--
-	-- 		toggle.setup({
-	-- 			-- your own inverses
-	-- 			inverses = {
-	-- 				["vim"] = "emacs",
-	-- 				["1"] = "0",
-	-- 				["dark"] = "light",
-	-- 			},
-	-- 			-- removes the default <leader>i keymap
-	-- 			remove_default_keybinds = true,
-	-- 		})
-	-- 	end,
-	-- },
 }

@@ -144,7 +144,7 @@ return {
 					lualine_z = {},
 				},
 				tabline = {},
-				extensions = { "neo-tree", "lazy", "mason", "man", "nvim-dap-ui", "quickfix" },
+				extensions = { "nvim-tree", "lazy", "mason", "man", "nvim-dap-ui", "quickfix" },
 			})
 		end,
 	},

@@ -140,8 +140,8 @@ M.icons = {
 		Unit = " ",
 		Value = " ",
 		Variable = "󰀫 ",
-    schema = " ",
-    table = "󰠶 ",
+		schema = " ",
+		table = "󰠶 ",
 	},
 }
 

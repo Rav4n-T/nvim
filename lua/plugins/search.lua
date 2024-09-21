@@ -10,7 +10,7 @@ return {
 			fzflua.setup({
 				winopts = { preview = { default = "bat" } },
 				grep = {
-					rg_opts = "--column --line-number --hidden --no-heading --color=always --smart-case --max-columns=4096 -e",
+					rg_opts = "--column --line-number --hidden --no-heading --color=always --smart-case --max-columns=4096 --glob '!/.git/*' -e",
 					actions = {
 						["ctrl-h"] = { actions.toggle_ignore },
 					},

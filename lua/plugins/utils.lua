@@ -3,20 +3,52 @@ return {
 		"j-hui/fidget.nvim",
 		config = function()
 			local fidget = require("fidget")
+
+			local IGNORE_MESSAGE = {
+				"textDocument/documentColor is not supported",
+			}
+
 			fidget.setup({
-				-- options
+				progress = {
+					display = {
+						render_limit = 2,
+						progress_icon = { pattern = "meter", period = 1 },
+					},
+				},
 				notification = {
 					override_vim_notify = true,
-					history_size = 128,
-
-					view = {
-						stack_upwards = false,
+					configs = {
+						default = vim.tbl_extend("force", require("fidget.notification").default_config, {
+							name = "Notify",
+							-- icon = "󰅂󰅂",
+							icon = "󰅁󰅁",
+							icon_on_left = true,
+							icon_style = "NotifyINFOIcon",
+							debug_style = "NotifyDEBUGTitle",
+							info_style = "NotifyINFOTitle",
+							warn_style = "NotifyWARNTitle",
+							error_style = "NotifyERRORTitle",
+						}),
 					},
 
-					-- Option related to the notification window and buffer
+					-- Conditionally redirect notifications to another backend
+					redirect = function(msg, level, opts)
+						for _, match in ipairs(IGNORE_MESSAGE) do
+							if msg:find(match) then
+								return true
+							end
+						end
+						if opts and opts.on_open then
+							return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
+						end
+					end,
 					window = {
-						winblend = 0, -- NOTE: it's winblend, not blend
-						align = "top",
+						normal_hl = "NotifyINFOTitle",
+						winblend = 0,
+						-- align = "top",
+					},
+					view = {
+						-- stack_upwards = false,
 					},
 				},
 			})

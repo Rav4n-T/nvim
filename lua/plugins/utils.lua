@@ -71,7 +71,7 @@ return {
 		config = function()
 			require("nvim-highlight-colors").setup({
 				-- @usage 'background'|'foreground'|'virtual'
-				render = "virtual",
+				render = "background",
 				virtual_symbol = "",
 				enable_named_colors = true,
 				enable_tailwind = true,

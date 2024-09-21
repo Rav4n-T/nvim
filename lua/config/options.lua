@@ -10,7 +10,7 @@ M.options = {
 		cursorline = true,
 		clipboard = "unnamedplus", --Enable system clipboard
 		-- set status line  never show
-		laststatus = 0,
+		laststatus = 3,
 		-- set columns of context
 		sidescrolloff = 10,
 		textwidth = 80,

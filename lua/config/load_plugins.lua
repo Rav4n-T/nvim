@@ -18,6 +18,9 @@ function M.setup()
 			lazy = false,
 			version = false, -- always use the latest git commit
 		},
+		rocks = {
+			enabled = false,
+		},
 		git = {
 			-- defaults for the `Lazy log` command
 			-- log = { "-10" }, -- show the last 10 commits

@@ -45,7 +45,6 @@ function M.open()
 
 	M.infos.bufnr, M.infos.winid = win:new_float(float_opt, true, true):wininfo()
 
-	-- 退出插入模式时销毁终端
 	function M.exit()
 		-- 关闭窗口和缓冲区
 		if api.nvim_win_is_valid(M.infos.winid) then

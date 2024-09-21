@@ -75,9 +75,13 @@ map("n", "]w", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 -- git
-local lazygit = require("utils.lazygit")
+local lazygit = require("internal.lazygit")
 map("n", "<leader>tg", lazygit.open, { desc = "open lazygit", remap = true, silent = true })
 
 -- term
-local term = require("utils.term")
+local term = require("internal.term")
 map("n", "<leader>to", term.open, { desc = "open term", remap = true, silent = true })
+
+-- yazi
+local yazi = require("internal.yazi")
+map("n", "<leader>ty", yazi.open, { desc = "open yazi", remap = true, silent = true })

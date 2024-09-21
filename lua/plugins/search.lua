@@ -8,9 +8,29 @@ return {
 			local fzflua = require("fzf-lua")
 			local actions = fzflua.actions
 			fzflua.setup({
+				winopts = { preview = { default = "bat" } },
+				grep = {
+					rg_opts = "--column --line-number --hidden --no-heading --color=always --smart-case --max-columns=4096 -e",
+					actions = {
+						["ctrl-h"] = { actions.toggle_ignore },
+					},
+				},
+				files = {
+					actions = {
+						["ctrl-g"] = false,
+						["ctrl-h"] = { actions.toggle_ignore },
+					},
+				},
+				manpages = { previewer = "man_native" },
+				helptags = { previewer = "help_native" },
+				lsp = { code_actions = { previewer = "codeaction_native" } },
+				tags = { previewer = "bat" },
+				btags = { previewer = "bat" },
 				actions = {
 					files = {
 						["enter"] = actions.file_edit,
+						["ctrl-s"] = actions.file_split,
+						["ctrl-v"] = actions.file_vsplit,
 					},
 				},
 			})

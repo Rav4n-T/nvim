@@ -11,8 +11,6 @@ function M.setup()
 	end
 	-- set lazy
 	load_lazy.setup()
-	-- keymap
-	require("config.keymaps")
 	-- autocommands
 	require("config.fn")
 	-- neovide
@@ -22,7 +20,6 @@ function M.setup()
 	-- colorschema
 	-- vim.cmd.colorscheme("catppuccin-macchiato")
 	-- vim.cmd.colorscheme("catppuccin-mocha")
-	vim.cmd.colorscheme("everforest")
 	-- override_ui_input
 	-- require("ui.input").override_ui_input()
 end

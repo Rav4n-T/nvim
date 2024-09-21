@@ -59,6 +59,18 @@ add_command("BufEnter", {
 		end
 	end,
 })
+
+add_command("VimEnter", {
+	group = group,
+	once = true,
+	callback = function()
+		-- keymap
+		require("config.keymaps")
+		vim.cmd.colorscheme("everforest")
+		-- lines
+		-- require("internal.stl").setup()
+	end,
+})
 -- Add run keybind
 add_command("FileType", {
 	pattern = "c,cpp,python",

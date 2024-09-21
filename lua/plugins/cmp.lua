@@ -6,7 +6,9 @@ local M = {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "kola-web/cmp-path" },
+		-- { "kola-web/cmp-path" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-cmdline" },
 		{
 			"MattiasMTS/cmp-dbee",
 			dependencies = {
@@ -196,6 +198,15 @@ local M = {
 		cmp.setup.cmdline({ "/", "?" }, {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = { { name = "buffer" } },
+		})
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline" },
+			}),
+			matching = { disallow_symbol_nonprefix_matching = false },
 		})
 	end,
 }

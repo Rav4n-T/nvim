@@ -18,19 +18,19 @@ return {
 					},
 				},
 				notification = {
-					-- override_vim_notify = true,
-					-- configs = {
-					-- 	default = vim.tbl_extend("force", require("fidget.notification").default_config, {
-					-- 		name = "Notify",
-					-- 		icon = "󰅁󰅁",
-					-- 		icon_on_left = true,
-					-- 		icon_style = "NotifyINFOIcon",
-					-- 		debug_style = "NotifyDEBUGTitle",
-					-- 		info_style = "NotifyINFOTitle",
-					-- 		warn_style = "NotifyWARNTitle",
-					-- 		error_style = "NotifyERRORTitle",
-					-- 	}),
-					-- },
+					override_vim_notify = true,
+					configs = {
+						default = vim.tbl_extend("force", require("fidget.notification").default_config, {
+							name = "Notify",
+							icon = "󰅁󰅁",
+							icon_on_left = true,
+							icon_style = "NotifyINFOIcon",
+							debug_style = "NotifyDEBUGTitle",
+							info_style = "NotifyINFOTitle",
+							warn_style = "NotifyWARNTitle",
+							error_style = "NotifyERRORTitle",
+						}),
+					},
 
 					-- Conditionally redirect notifications to another backend
 					-- redirect = function(msg, level, opts)

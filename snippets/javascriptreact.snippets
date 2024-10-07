@@ -2,19 +2,19 @@ extends javascript
 extends html
 
 snippet nrf "New React Function"
-	const ${1:ComponentName} = (${2:props}) => {
-		${4:state}
+	const ${1:ComponentName} = () => {
 		return (
 			<>
-				${3:Some text}
+        <div>
+				  ${0:Content}
+        </div>
 			</>
 		);
 	};
 	export default ${1:ComponentName}
 
 snippet nrdf "New React Function"
-	export default function ${1:ComponentName} (${2:props}){
-		${4:state}
+	export default function ${1:ComponentName} (){
 		return (
 			<>
 				${3:Some text}
@@ -23,4 +23,15 @@ snippet nrdf "New React Function"
 	};
 
 snippet useEffect "useEffect"
-  useEffect(() => {${1:body}}, [${2:dependencies}])${0}
+  useEffect(() => {
+    ${1:body}
+  }, [])${0}
+
+snippet cons "useState"
+  const [${1:stateName}, set${3}${1:stateName}] = useStat${2};${0}
+
+snippet conh "Handle"
+  const handle${1:EventName} = (${2:Params}) => {
+    ${3:SomeCode}
+  }
+

@@ -78,6 +78,9 @@ M.setLspKeymap = function()
 				vim.lsp.buf.code_action,
 				{ desc = "code actions", buffer = ev.buf, remap = true, silent = true }
 			)
+			map({ "n" }, "<space>ai", function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end, { desc = "toggle inlay hint", buffer = ev.buf, remap = true, silent = true })
 			map(
 				"n",
 				"<space>wa",

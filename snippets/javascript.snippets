@@ -3,4 +3,7 @@ snippet cl "console.log"
 	$0
 
 snippet im "import some things"
-  import ${2:alias} from "${1:path}";$0
+  import { ${2:alias} } from "${1:path}";$0
+
+snippet ima "import some things"
+	import "@/assets/${1}";$0

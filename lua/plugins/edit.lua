@@ -3,7 +3,8 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		event = "VeryLazy",
 		dependencies = {
-			{ "HiPhish/rainbow-delimiters.nvim" },
+			-- { "HiPhish/rainbow-delimiters.nvim" },
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
 		},
 		build = ":TSUpdate",
 		config = function()
@@ -24,6 +25,26 @@ return {
 				indent = {
 					enable = true,
 				},
+				textobjects = {
+					select = {
+						enable = true,
+
+						-- Automatically jump forward to textobj, similar to targets.vim
+						lookahead = true,
+
+						keymaps = {
+							-- You can use the capture groups defined in textobjects.scm
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							-- You can optionally set descriptions to the mappings (used in the desc parameter of
+							-- nvim_buf_set_keymap) which plugins like which-key display
+							["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+							-- You can also use captures from other query groups like `locals.scm`
+							["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+						},
+					},
+				},
 			})
 		end,
 	},
@@ -32,34 +53,23 @@ return {
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "html" },
 		config = true,
 	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {
-			fast_wrap = {
-				map = "<C-e>",
-				chars = { "{", "[", "(", '"', "'", "`" },
-				pattern = [=[[%'%"%>%]%)%}%,]]=],
-				end_key = "j",
-				before_key = "h",
-				after_key = "l",
-				cursor_pos_before = false,
-				keys = "qwertyuiopzxcvbnmasdfghjkl",
-				manual_position = true,
-				highlight = "Search",
-				highlight_grey = "Comment",
-			},
-		},
-		-- config = true,
-		-- use opts = {} for passing setup options
-		-- this is equalent to setup({}) function
-	},
 
 	{
-		"echasnovski/mini.ai",
+		"m4xshen/autoclose.nvim",
 		event = "VeryLazy",
-		version = false,
+		config = function()
+			require("autoclose").setup({
+				options = {
+					disabled_filetypes = { "text" },
+					disable_when_touch = false,
+					touch_regex = "[%w(%[{]",
+					pair_spaces = true,
+					disable_command_mode = false,
+				},
+			})
+		end,
 	},
+
 	{
 		"kylechui/nvim-surround",
 		version = "*",
@@ -142,7 +152,7 @@ return {
 			end, { range = true })
 
 			-- Format
-			map("v", "f", "<cmd>Format<cr>", { desc = "format current selection", remap = true, silent = true })
+			map("v", "<leader>f", "<cmd>Format<cr>", { desc = "format current selection", remap = true, silent = true })
 			map("n", "<leader>af", "<cmd>Format<cr>", { desc = "format current file", remap = true, silent = true })
 		end,
 	},

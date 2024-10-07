@@ -6,6 +6,35 @@ return {
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{
+				"utilyre/barbecue.nvim",
+				name = "barbecue",
+				version = "*",
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"nvim-tree/nvim-web-devicons",
+				},
+				config = function()
+					-- triggers CursorHold event faster
+					vim.opt.updatetime = 200
+					require("barbecue").setup({
+						create_autocmd = false,
+					})
+
+					vim.api.nvim_create_autocmd({
+						"WinResized",
+						"BufWinEnter",
+						"CursorHold",
+						"InsertLeave",
+						"BufModifiedSet",
+					}, {
+						group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+						callback = function()
+							require("barbecue.ui").update()
+						end,
+					})
+				end,
+			},
 		},
 		---@class PluginLspOpts
 		opts = {
@@ -14,6 +43,9 @@ return {
 				underline = false,
 				update_in_insert = false,
 				virtual_text = true,
+				inlay_hints = {
+					enable = true,
+				},
 				float = {
 					source = "always",
 				},
@@ -24,6 +56,7 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
+							hint = { enable = true },
 							runtime = {
 								version = "LuaJIT",
 							},
@@ -93,10 +126,35 @@ return {
 				-- 		},
 				-- 	},
 				-- },
-				gopls = {},
-				-- tsserver = {},
+				gopls = {
+					init_options = {
+						hints = {
+							assignVariableTypes = true,
+							compositeLiteralFields = true,
+							compositeLiteralTypes = true,
+							constantValues = true,
+							functionTypeParameters = true,
+							parameterNames = true,
+							rangeVariableTypes = true,
+						},
+					},
+				},
+				ts_ls = {
+					init_options = {
+						preferences = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+							importModuleSpecifierPreference = "non-relative",
+						},
+					},
+				},
 				tailwindcss = {},
-				-- jsonls = {},
+				jsonls = {},
 				-- pyright = {},
 				-- cssls = {
 				-- 	filetypes = {
@@ -111,6 +169,8 @@ return {
 				-- 	},
 				-- 	single_file_support = true,
 				-- },
+				marksman = {},
+				markdown_oxide = {},
 			},
 			setup = {},
 		},
@@ -130,7 +190,7 @@ return {
 			local function setup(server)
 				local server_opts = vim.tbl_deep_extend("force", {
 					capabilities = vim.deepcopy(capabilities),
-					-- on_attach = lspUtils.AttachFn,
+					on_attach = lspUtils.AttachFn,
 				}, servers[server] or {})
 				require("lspconfig")[server].setup(server_opts)
 			end

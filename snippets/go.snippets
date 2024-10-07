@@ -1,3 +1,5 @@
+extends gin
+
 snippet v "shorthand variable declaration"
 	${1} := ${2}
 
@@ -37,7 +39,7 @@ snippet co "constants with iota"
 		${0:NAME2}
 	)
 
-snippet cn "continue"
+snippet cont "continue"
 	continue
 
 snippet df "defer"
@@ -58,7 +60,7 @@ snippet im "import"
 snippet in "interface"
 	interface{}
 
-snippet inf "full interface "
+snippet int "full interface "
 	type ${1:name} interface {
 		${2:/* methods */}
 	}
@@ -81,11 +83,23 @@ snippet el "else"
 		${0:${VISUAL}}
 	}
 
+snippet ie "if error not nil"
+	if err != nil {
+		${1:${VISUAL}}
+		return ${2:${VISUAL}}
+	}
+	${0}
+
 snippet ir "if error not nil, return err"
 	if err != nil {
 		return err
 	}
 	${0}
+
+snippet ier "Error handling with fmt.Errorf"
+	if ${1}err != nil {
+		return fmt.Errorf("${2} %w", err)
+	}
 
 snippet f "false"
 	false
@@ -107,12 +121,12 @@ snippet for "for loop"
 		${0:${VISUAL}}
 	}
 
-snippet fori "for int loop"
+snippet fi "for int loop"
 	for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
 		${0:${VISUAL}}
 	}
 
-snippet forr "for range loop"
+snippet fr "for range loop"
 	for ${1:e} := range ${2:collection} {
 		${0:${VISUAL}}
 	}
@@ -152,7 +166,7 @@ snippet main "func main()"
 	}
 	${0}
 
-snippet nw "new"
+snippet new "new"
 	new(${0:type})
 
 snippet pa "package"
@@ -212,7 +226,7 @@ snippet t "true"
 snippet g "goroutine named function"
 	go ${1:funcName}(${0})
 
-snippet ga "goroutine anonymous function"
+snippet gf "goroutine anonymous function"
 	go func(${1} ${2:type}) {
 		${3:/* code */}
 	}(${0})
@@ -257,7 +271,6 @@ snippet om "if key in a map"
 		${4:/* code */}
 	}
 
-
 snippet gg "Grouped globals with anonymous struct"
 	var ${1:var} = struct{
 		${2:name} ${3:type}
@@ -265,16 +278,9 @@ snippet gg "Grouped globals with anonymous struct"
 		$2: ${4:value},
 	}
 
-
 snippet ja "Marshalable json alias"
 	type ${1:parentType}Alias $1
 
 	func (p *$1) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&struct{ *$1Alias }{(*$1Alias)(p)})
-	}
-
-
-snippet errwr "Error handling with fmt.Errorf"
-	if ${1}err != nil {
-		return fmt.Errorf("${2} %w", err)
 	}

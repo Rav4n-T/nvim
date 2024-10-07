@@ -1,6 +1,7 @@
 return {
 	{
 		"askfiy/http-client.nvim",
+		ft = { "http" },
 		config = function()
 			local map = vim.keymap.set
 			local http = require("http-client")

@@ -148,7 +148,7 @@ return {
 				{ "z", group = "fold" },
 				{ "]", group = "next" },
 				{ "", group = "prev" },
-				{ "<leader>a", group = "Action" },
+				{ "<leader>a", group = "Action+AI" },
 				{ "<leader>b", group = "Buffer or dbee" },
 				{ "<leader>d", group = "Debug" },
 				{ "<leader>f", group = "Find" },

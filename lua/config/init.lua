@@ -13,10 +13,6 @@ function M.setup()
 	load_lazy.setup()
 	-- autocommands
 	require("config.fn")
-	-- neovide
-	if vim.g.neovide then
-		require("config.neovide")
-	end
 	-- colorschema
 	vim.cmd.colorscheme("everforest")
 	-- override_ui_input

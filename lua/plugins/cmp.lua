@@ -1,5 +1,7 @@
 local M = {
 	"hrsh7th/nvim-cmp",
+	enabled = false,
+	-- name = "nvim-cmp",
 	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
@@ -33,21 +35,21 @@ local M = {
 		require("luasnip.loaders.from_snipmate").lazy_load()
 
 		-- gray
-		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#D5C4A1" })
-		-- blue
-		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#D79921" })
-		vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { bg = "NONE", fg = "#282828" })
-		-- light blue
-		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#689D6A" })
-		vim.api.nvim_set_hl(0, "CmpItemKindInterface", { bg = "NONE", fg = "#CC241D" })
-		vim.api.nvim_set_hl(0, "CmpItemKindText", { bg = "NONE", fg = "#3C8588" })
-		-- pink
-		vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#B16286" })
-		vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
-		-- front
-		vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#FBF1C7" })
-		vim.api.nvim_set_hl(0, "CmpItemKindProperty", { bg = "NONE", fg = "#D65D0E" })
-		vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
+		-- vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#D5C4A1" })
+		-- -- blue
+		-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#D79921" })
+		-- vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { bg = "NONE", fg = "#282828" })
+		-- -- light blue
+		-- vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#689D6A" })
+		-- vim.api.nvim_set_hl(0, "CmpItemKindInterface", { bg = "NONE", fg = "#CC241D" })
+		-- vim.api.nvim_set_hl(0, "CmpItemKindText", { bg = "NONE", fg = "#3C8588" })
+		-- -- pink
+		-- vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#B16286" })
+		-- vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+		-- -- front
+		-- vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#FBF1C7" })
+		-- vim.api.nvim_set_hl(0, "CmpItemKindProperty", { bg = "NONE", fg = "#D65D0E" })
+		-- vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
 
 		cmp.setup({
 			enabled = function()
@@ -100,7 +102,6 @@ local M = {
 					item.menu = ({
 						nvim_lsp = "(Lsp)",
 						luasnip = "(Snp)",
-						-- nvim_lua = "(Lua)",
 						fittencode = "(FC)",
 						path = "(Pth)",
 						buffer = "(Buf)",
@@ -161,7 +162,6 @@ local M = {
 					priority = 7,
 					group_index = 1,
 				},
-				{ name = "neorg" },
 			}),
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = cmp.mapping(function(fallback)
@@ -210,4 +210,5 @@ local M = {
 		})
 	end,
 }
+
 return M

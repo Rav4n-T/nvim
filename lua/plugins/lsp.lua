@@ -5,7 +5,8 @@ return {
 		dependencies = {
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
-			{ "hrsh7th/cmp-nvim-lsp" },
+			-- { "hrsh7th/cmp-nvim-lsp" },
+			{ "saghen/blink.cmp" },
 			{
 				"utilyre/barbecue.nvim",
 				name = "barbecue",
@@ -40,7 +41,7 @@ return {
 		opts = {
 			-- options for vim.diagnostic.config()
 			diagnostics = {
-				underline = false,
+				underline = true,
 				update_in_insert = false,
 				virtual_text = true,
 				inlay_hints = {
@@ -170,7 +171,7 @@ return {
 				-- 	single_file_support = true,
 				-- },
 				marksman = {},
-				markdown_oxide = {},
+				-- markdown_oxide = {},
 			},
 			setup = {},
 		},
@@ -187,6 +188,13 @@ return {
 			for server, config in pairs(opts.servers or {}) do
 				-- add mason ensure install servers to a table
 				ensure_installed[#ensure_installed + 1] = server
+
+				-- set lsp start fn
+				-- cmp
+				-- config.capabilities =
+				-- 	require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+				-- blink
+				config.capabilities = require("blink.cmp").get_lsp_capabilities()
 				config.on_attach = lspUtils.AttachFn
 
 				-- setup lsp

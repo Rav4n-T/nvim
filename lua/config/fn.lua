@@ -142,14 +142,5 @@ vim.api.nvim_create_autocmd("FileType", {
 --})
 
 -- Change fcitx5 status on insertLeave
--- add_command("InsertLeave", {
--- 	callback = function()
--- 		local input_status = tonumber(vim.fn.system("fcitx5-remote"))
--- 		if input_status == 2 then
--- 			vim.fn.system("fcitx5-remote -c")
--- 		end
--- 	end,
--- })
-
--- Windows IM Switch
--- require("utils.im")
+--  IM Switch
+require("utils.im").setup()

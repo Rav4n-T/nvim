@@ -22,4 +22,12 @@ return {
 		-- use opts = {} for passing setup options
 		-- this is equalent to setup({}) function
 	},
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "BufEnter",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	},
 }

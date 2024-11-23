@@ -181,35 +181,21 @@ return {
 			lspUtils.setLspKeymap()
 			lspUtils.setFloatWindow()
 
-			-- mason-lspconfig
-			local servers = opts.servers
-			local capabilities =
-				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local lspconfig = require("lspconfig")
 			local ensure_installed = {} ---@type string[]
 
-			local function setup(server)
-				local server_opts = vim.tbl_deep_extend("force", {
-					capabilities = vim.deepcopy(capabilities),
-					on_attach = lspUtils.AttachFn,
-				}, servers[server] or {})
-				require("lspconfig")[server].setup(server_opts)
-			end
-
-			for server, _ in pairs(servers) do
+			for server, config in pairs(opts.servers or {}) do
+				-- add mason ensure install servers to a table
 				ensure_installed[#ensure_installed + 1] = server
+				config.on_attach = lspUtils.AttachFn
+
+				-- setup lsp
+				lspconfig[server].setup(config)
 			end
 
-			require("mason").setup({
-				ui = {
-					border = "single",
-					icons = {
-						package_installed = " ",
-						package_pending = " ",
-						package_uninstalled = " ",
-					},
-				},
-			})
-			require("mason-lspconfig").setup({ ensure_installed = ensure_installed, handlers = { setup } })
+			-- mason-lspconfig
+			require("mason").setup({})
+			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 		end,
 	},
 	{

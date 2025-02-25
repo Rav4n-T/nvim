@@ -1,0 +1,34 @@
+{
+  "FunctionComponent": {
+    "prefix": "nfc",
+    "body": [
+      "",
+      "const ${TM_FILENAME_BASE} = () => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${TM_FILENAME_BASE}"
+    ],
+    "description": "Creates a React function component without PropTypes"
+  },
+  "FunctionComponentWithCustomName": {
+    "prefix": "nfcn",
+    "body": [
+      "",
+      "const ${1:functionname} = () => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t$0",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default ${1:functionname}"
+    ],
+    "description": "Creates a React function component with custom name"
+  }
+}

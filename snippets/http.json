@@ -1,0 +1,27 @@
+{
+  "get": {
+    "prefix": "get",
+    "body": [
+      "###",
+      "# ${1:desriptive}",
+      "GET {{${2:base_url}}}/${3:path}",
+      "accept: application/json"
+    ],
+    "description": "get request"
+  },
+  "post": {
+    "prefix": "post",
+    "body": [
+      "###",
+      "# ${1:desriptive}",
+      "POST {{${2:base_url}}}/${3:path}",
+      "accept: application/json",
+      "Authorization: Bearer {{token}}",
+      "",
+      "{",
+      "\t${4:data}",
+      "}"
+    ],
+    "description": "post request"
+  }
+}

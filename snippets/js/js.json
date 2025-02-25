@@ -1,0 +1,31 @@
+{
+  "console.log": {
+    "prefix": "cl",
+    "body": "console.log(${1})${0}"
+  },
+
+  "import module": {
+    "prefix": "im",
+    "body": "import ${2:*} from '${1:module}'"
+  },
+  "import assets file": {
+    "prefix": "ima",
+    "body": "import '@/assets/${1}';${0}"
+  },
+  "import module as": {
+    "prefix": "imas",
+    "body": "import ${2:*} as ${3:name} from '${1:module}'"
+  },
+  "import module destructured": {
+    "prefix": "imd",
+    "body": "import {$2} from '${1:module}'"
+  },
+  "const Handle function": {
+    "prefix": "conh",
+    "body": [
+      "const handle${1:FunctionName} = (${2:Params}) => {",
+      "\t${0}",
+      "}"
+    ]
+  }
+}

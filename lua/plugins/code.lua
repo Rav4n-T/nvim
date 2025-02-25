@@ -1,6 +1,6 @@
 return {
 	{
-		"luozhiya/fittencode.nvim",
+		dir = "~/Projectes/Git/fittencode.nvim",
 		event = { "InsertEnter", "CmdlineEnter" },
 		config = function()
 			local utils = require("utils.cmp")
@@ -38,6 +38,12 @@ return {
 					trigger_chars = utils.fc_trigger_chars(),
 				},
 				completion_mode = "source",
+
+				log = {
+					-- Log level.
+					-- level = vim.log.levels.DEBUG,
+					-- Max log file size in MB, default is 10MB
+					max_size = 10,
 				},
 			})
 		end,

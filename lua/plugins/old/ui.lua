@@ -1,5 +1,83 @@
 return {
 
+		{
+			"j-hui/fidget.nvim",
+			event = "VeryLazy",
+			config = function()
+				local fidget = require("fidget")
+				-- local map = vim.keymap.set
+				--
+				-- local IGNORE_MESSAGE = {
+				-- 	"textDocument/documentColor is not supported",
+				-- }
+
+				fidget.setup({
+					progress = {
+						display = {
+							render_limit = 2,
+							progress_icon = { pattern = "meter", period = 1 },
+						},
+					},
+					notification = {
+						override_vim_notify = true,
+						configs = {
+							default = vim.tbl_extend("force", require("fidget.notification").default_config, {
+								name = "Notify",
+								icon = "󰅁󰅁",
+								icon_on_left = true,
+								icon_style = "NotifyINFOIcon",
+								debug_style = "NotifyDEBUGTitle",
+								info_style = "NotifyINFOTitle",
+								warn_style = "NotifyWARNTitle",
+								error_style = "NotifyERRORTitle",
+							}),
+						},
+
+						-- Conditionally redirect notifications to another backend
+						-- redirect = function(msg, level, opts)
+						-- 	for _, match in ipairs(IGNORE_MESSAGE) do
+						-- 		if msg:find(match) then
+						-- 			return true
+						-- 		end
+						-- 	end
+						-- 	if opts and opts.on_open then
+						-- 		return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
+						-- 	end
+						-- end,
+						window = {
+							-- normal_hl = "NotifyINFOTitle",
+							winblend = 0,
+							-- align = "top",
+						},
+						view = {
+							-- stack_upwards = false,
+						},
+					},
+				})
+
+				-- map("n", "<leader>nh", "<cmd>Fidget history<cr>", { desc = "Noice History", remap = true, silent = true })
+			end,
+		},
+
+	{
+		"echasnovski/mini.indentscope",
+		event = { "BufEnter" },
+		opts = {
+			symbol = "╎",
+			options = { try_as_border = true },
+		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+				callback = function()
+					vim.b.miniindentscope_disable = true
+				end,
+			})
+		end,
+		config = function(_, opts)
+			require("mini.indentscope").setup(opts)
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		-- event = { "BufReadPost", "BufNewFile" },

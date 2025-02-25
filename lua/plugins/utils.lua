@@ -1,64 +1,5 @@
 return {
 	{
-		"j-hui/fidget.nvim",
-		event = "VeryLazy",
-		config = function()
-			local fidget = require("fidget")
-			-- local map = vim.keymap.set
-			--
-			-- local IGNORE_MESSAGE = {
-			-- 	"textDocument/documentColor is not supported",
-			-- }
-
-			fidget.setup({
-				progress = {
-					display = {
-						render_limit = 2,
-						progress_icon = { pattern = "meter", period = 1 },
-					},
-				},
-				notification = {
-					override_vim_notify = true,
-					configs = {
-						default = vim.tbl_extend("force", require("fidget.notification").default_config, {
-							name = "Notify",
-							icon = "󰅁󰅁",
-							icon_on_left = true,
-							icon_style = "NotifyINFOIcon",
-							debug_style = "NotifyDEBUGTitle",
-							info_style = "NotifyINFOTitle",
-							warn_style = "NotifyWARNTitle",
-							error_style = "NotifyERRORTitle",
-						}),
-					},
-
-					-- Conditionally redirect notifications to another backend
-					-- redirect = function(msg, level, opts)
-					-- 	for _, match in ipairs(IGNORE_MESSAGE) do
-					-- 		if msg:find(match) then
-					-- 			return true
-					-- 		end
-					-- 	end
-					-- 	if opts and opts.on_open then
-					-- 		return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
-					-- 	end
-					-- end,
-					window = {
-						-- normal_hl = "NotifyINFOTitle",
-						winblend = 0,
-						-- align = "top",
-					},
-					view = {
-						-- stack_upwards = false,
-					},
-				},
-			})
-
-			-- map("n", "<leader>nh", "<cmd>Fidget history<cr>", { desc = "Noice History", remap = true, silent = true })
-		end,
-	},
-
-	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -119,17 +60,40 @@ return {
 				},
 			},
 		},
-		    -- stylua: ignore
-		    keys = {
-		      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-		      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-		      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
-		      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
-		      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
-		      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
-		      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
-		    }
+			    -- stylua: ignore
+			    keys = {
+			      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
+			      { "<leader>nl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
+			      { "<leader>nh", function() require("noice").cmd("history") end, desc = "Noice History" },
+			      { "<leader>na", function() require("noice").cmd("all") end, desc = "Noice All" },
+			      { "<leader>nd", function() require("noice").cmd("dismiss") end, desc = "Dismiss All" },
+			      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = {"i", "n", "s"} },
+			      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = {"i", "n", "s"}},
+			    }
 ,
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = false },
+			dashboard = { enabled = true },
+			explorer = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			-- scroll = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
 	},
 	{
 		"folke/which-key.nvim",

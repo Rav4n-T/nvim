@@ -156,7 +156,29 @@ return {
 				},
 				tailwindcss = {},
 				jsonls = {},
-				-- pyright = {},
+				basedpyright = {},
+				-- ruff = {
+				-- 	init_options = {
+				-- 		settings = {
+				-- 			fixAll = true,
+				-- 			organizeImports = true,
+				-- 			showSyntaxErrors = true,
+				-- 			codeAction = {
+				-- 				disableRuleComment = {
+				-- 					enable = true,
+				-- 				},
+				-- 				fixViolation = {
+				-- 					enable = true,
+				-- 				},
+				-- 			},
+				-- 			lint = {
+				-- 				enable = true,
+				-- 				preview = true,
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
+				--
 				-- cssls = {
 				-- 	filetypes = {
 				-- 		"css",

@@ -66,23 +66,22 @@ add_command("VimEnter", {
 	callback = function()
 		-- keymap
 		require("config.keymaps")
-		vim.cmd.colorscheme("everforest")
 		-- lines
 		-- require("internal.stl").setup()
 	end,
 })
 -- Add run keybind
-add_command("FileType", {
-	pattern = "c,cpp,python",
-	callback = function()
-		wk.add({
-			["<F5>"] = {
-				utils.runCode,
-				"Compilite or Run",
-			},
-		})
-	end,
-})
+-- add_command("FileType", {
+-- 	pattern = "c,cpp,python",
+-- 	callback = function()
+-- 		wk.add({
+-- 			["<F5>"] = {
+-- 				utils.runCode,
+-- 				"Compilite or Run",
+-- 			},
+-- 		})
+-- 	end,
+-- })
 
 -- Use mingw build file in windows
 -- add_command("FileType", {

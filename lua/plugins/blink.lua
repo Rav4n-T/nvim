@@ -29,6 +29,7 @@ local M = {
 			-- see the "default configuration" section below for full documentation on how to define
 			-- your own keymap.
 			keymap = {
+				["<C-e>"] = { "show", "hide", "fallback" },
 				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
 				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
 				["<Up>"] = { "select_prev", "fallback" },
@@ -37,63 +38,79 @@ local M = {
 			},
 
 			sources = {
-				completion = {
-					enabled_providers = { "lsp", "path", "snippets", "buffer", "fittencode" },
-				},
+				-- default = { "lsp", "path", "snippets", "buffer", "fittencode" },
+				default = { "lsp", "path", "snippets", "buffer" },
 
 				providers = {
 					lsp = {
 						min_keyword_length = 2,
 					},
-
+					snippets = {
+						min_keyword_length = 2,
+					},
+					buffer = {
+						min_keyword_length = 2,
+					},
 					fittencode = {
-						name = "fittencode",
+						name = "FC",
+						min_keyword_length = 2,
 						module = "fittencode.sources.blink",
 					},
 				},
 			},
-
-			highlight = {
-				-- sets the fallback highlight groups to nvim-cmp's highlight groups
-				-- useful for when your theme doesn't support blink.cmp
-				-- will be removed in a future release, assuming themes add support
-				use_nvim_cmp_as_default = true,
-			},
-			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-			-- adjusts spacing to ensure icons are aligned
-			nerd_font_variant = "mono",
-
-			-- experimental auto-brackets support
-			accept = {
-				-- expand_snippet = require("luasnip").lsp_expand,
-				auto_brackets = { enabled = true },
-			},
-
-			-- experimental signature help support
-			trigger = { signature_help = { enabled = true, show_on_insert_on_trigger_character = true } },
-
-			windows = {
-				autocomplete = {
-					draw = {
-						columns = {
-							{ "label", "label_description", gap = 2 },
-							{ "kind", "kind_icon", gap = 2 },
-						},
+			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
 					},
 				},
-				documentation = {
-					auto_show = true,
+				menu = {
+					auto_show = false,
+					-- auto_show = function(ctx)
+					-- 	return ctx.mode ~= "cmdline" or not vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
+					-- end,
+					-- auto_show = function(ctx)
+					-- 	return ctx.mode ~= "cmdline" or vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype())
+					-- end,
+
+					scrollbar = false,
+					-- Controls how the completion items are rendered on the popup window
+					draw = {
+						columns = {
+							{ "kind_icon" },
+							{ "label", "label_description", gap = 2 },
+							-- { "kind", "source_name", gap = 2 },
+							{ "source_name", gap = 1 },
+						},
+					},
+					-- components = {},
 				},
+				documentation = {
+					-- Controls whether the documentation window will automatically show when selecting a completion item
+					auto_show = true,
+					window = {
+						-- Note that the gutter will be disabled when border ~= 'none'
+						scrollbar = false,
+					},
+				},
+				-- Displays a preview of the selected item on the current line
 				ghost_text = {
-					enabled = false,
+					enabled = true,
 				},
 			},
 
-			kind_icons = require("config.options").icons.kind_icons,
+			appearance = {
+				highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+				-- Sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- Useful for when your theme doesn't support blink.cmp
+				-- Will be removed in a future release
+				use_nvim_cmp_as_default = false,
+				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+				kind_icons = require("config.options").icons.kind_icons,
+			},
 		},
-		-- allows extending the enabled_providers array elsewhere in your config
-		-- without having to redefining it
-		opts_extend = { "sources.completion.enabled_providers" },
 	},
 }
 
